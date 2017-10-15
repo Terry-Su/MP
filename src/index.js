@@ -1,4 +1,1 @@
-require('./controller/index')
-
-
-
+module.exports = require('./controller/index')
