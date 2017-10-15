@@ -1,3 +1,5 @@
+const Interface = require('../../interface/index')
+const InitialState = require('../../store/initialState')
 const getNodeWebpackConfig = require('../getNodeWebpackConfig')
 const getOutputPagePath = require('../getOutputPagePath')
 
@@ -7,12 +9,12 @@ const checkExsitRawWebpackConfigOutput = (rawWebpackConfig) => getKeys(rawWebpac
 const getFileName = filePath => PATH.basename(filePath)
 const getDefaultEntry = page => {
     const { path: pagePath } = page
-    return PATH.resolve(pagePath, './entry.js')
+    return PATH.resolve(pagePath, Interface.webpackEntryRelativePath || InitialState.webpackEntryRelativePath)
 }
 const getDefaultOutput = page => {
     const outputPagePath = getOutputPagePath(page)
-    const path = outputPagePath
-    const filename = 'bundle.js'
+    const path = PATH.resolve(outputPagePath, Interface.webpackOutputFolderRelativePath || InitialState.webpackOutputFolderRelativePath)
+    const filename = Interface.webpackOutputFileName || InitialState.webpackOutputFileName
     return {
         path,
         filename,

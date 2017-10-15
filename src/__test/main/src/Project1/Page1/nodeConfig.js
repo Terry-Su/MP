@@ -32,11 +32,11 @@ module.exports = {
     devtool: 'source-map',
     plugins: process.env.production ? [
       new UglifyJSPlugin()
-    ] : []
+    ] : [],
   },
 
   htmlConfig: {
-    name: 'index12.html',
+    name: 'index.html',
     content: `
 <html>
   <body>index.html</body>

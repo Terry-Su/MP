@@ -24,6 +24,6 @@ module.exports = function (page) {
     watchHtmlConfigAndRebuildHtmlIfNeeded(page)
 
     watchWebpackConfigAndRebuildHtmlIfNeeded(page)
-    
+
     copyStaticToPublic(page)
 }

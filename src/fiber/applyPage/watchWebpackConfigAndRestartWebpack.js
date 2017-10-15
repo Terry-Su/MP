@@ -10,11 +10,16 @@ module.exports = function (page) {
 
     const callback = () => {
         webpackWatcher.close(() => {
-            webpackWatcher = applyWebpack(page)
+            try {
+                webpackWatcher = applyWebpack(page)
 
-            logWebpackRestart()
+                logWebpackRestart()
+            } catch (e) {
+                Util.logError(e)
+            }
+            
         })
-        
+
     }
 
     watchNodeWebpackConfigChageByPage(page, callback, 100)

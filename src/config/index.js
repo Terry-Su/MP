@@ -1,9 +1,11 @@
+
 const PATH = require('path')
 
 const Interface = require('../interface/index')
+const InitialState = require('../store/initialState')
 const defaultMpConfig = require('./defaultMpConfig')
 
-const getConfigPathFileName = () => `./${Interface.configAlias}` || './mp.config.js'
+const getConfigPathFileName = () => Interface.mpConfigRelativePath || InitialState.mpConfigRelativePath
 
 const mpConfigPath = PATH.resolve(process.cwd(), getConfigPathFileName())
 const mpConfig = require(mpConfigPath)
