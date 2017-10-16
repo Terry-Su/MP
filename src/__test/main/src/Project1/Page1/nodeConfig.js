@@ -3,7 +3,7 @@ const PATH = require('path')
 
 
 module.exports = {
-  webpackConfig: {
+  webpack: {
     module: {
       rules: [
         {
@@ -35,7 +35,7 @@ module.exports = {
     ] : [],
   },
 
-  htmlConfig: {
+  html: {
     name: 'index.html',
     content: `
 <html>

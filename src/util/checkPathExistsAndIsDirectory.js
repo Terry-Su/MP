@@ -9,3 +9,13 @@ module.exports = function (path) {
     }
     return result
 }
+
+module.exports = function (path) {
+    let result = false
+    try {
+        result = FS.lstatSync(path).isDirectory()
+    } catch (e) {
+
+    }
+    return result
+}

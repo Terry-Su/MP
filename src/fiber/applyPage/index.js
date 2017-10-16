@@ -1,23 +1,42 @@
-const watchHtmlConfigAndRebuildHtml = require('./watchHtmlConfigAndRebuildHtml')
-const watchWebpackConfigAndRestartWebpack = require('./watchWebpackConfigAndRestartWebpack')
-const copyStaticToPublic = require('./copyStaticToPublic')
-const getNodeHtmlConfig = require('../getNodeHtmlConfig')
-const getNodeWebpackConfig = require('../getNodeWebpackConfig')
+const watchNodeConfigHtmlAndRebuildHtml = require('./watchNodeConfigHtmlAndRebuildHtml')
+const watchNodeConfigWebpackAndRestartWebpack = require('./watchNodeConfigWebpackAndRestartWebpack')
+const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput = require('./watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput')
+const watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput = require('./watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput')
+const getNodeConfigHtmlByPage = require('../getNodeConfigHtmlByPage')
+const getNodeConfigWebpackByPage = require('../getNodeConfigWebpackByPage')
+const getMpConfigRelativePathsToOutput = require('../getMpConfigRelativePathsToOutput')
+const getNodeConfigRelativePathsToOutputByPage = require('../getNodeConfigRelativePathsToOutputByPage')
 
 module.exports = function (page) {
     const watchHtmlConfigAndRebuildHtmlIfNeeded = (page) => {
-        const htmlConfig = getNodeHtmlConfig(page)
-        const exsitHtmlConfig = htmlConfig !== undefined
-        if (exsitHtmlConfig) {
-            watchHtmlConfigAndRebuildHtml(page)
+        const htmlConfig = getNodeConfigHtmlByPage(page)
+        const existHtmlConfig = htmlConfig !== undefined
+        if (existHtmlConfig) {
+            watchNodeConfigHtmlAndRebuildHtml(page)
         }
     }
 
     const watchWebpackConfigAndRebuildHtmlIfNeeded = (page) => {
-        const webpackConfig = getNodeWebpackConfig(page)
-        const exsitWebpackConfig = webpackConfig !== undefined
-        if (exsitWebpackConfig) {
-            watchWebpackConfigAndRestartWebpack(page)
+        const webpackConfig = getNodeConfigWebpackByPage(page)
+        const existWebpackConfig = webpackConfig !== undefined
+        if (existWebpackConfig) {
+            watchNodeConfigWebpackAndRestartWebpack(page)
+        }
+    }
+
+    const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded = (page) => {
+        const mpConfigRelativePathsToOutput = getMpConfigRelativePathsToOutput()
+        const exsitMpConfigRelativePathsToOutput = mpConfigRelativePathsToOutput !== undefined
+        if (exsitMpConfigRelativePathsToOutput) {
+            watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput(page)
+        }
+    }
+
+    const watchNodeConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded = (page) => {
+        const nodeConfigRelativePathsToOutput = getNodeConfigRelativePathsToOutputByPage(page)
+        const exsitNodeConfigRelativePathsToOutput = nodeConfigRelativePathsToOutput !== undefined
+        if (exsitNodeConfigRelativePathsToOutput) {
+            watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput(page)
         }
     }
 
@@ -25,5 +44,7 @@ module.exports = function (page) {
 
     watchWebpackConfigAndRebuildHtmlIfNeeded(page)
 
-    copyStaticToPublic(page)
+    watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded(page)
+
+    watchNodeConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded(page)
 }

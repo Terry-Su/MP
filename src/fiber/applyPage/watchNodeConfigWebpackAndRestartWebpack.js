@@ -1,5 +1,5 @@
 const applyWebpack = require('./applyWebpack')
-const watchNodeWebpackConfigChageByPage = require('../watchNodeWebpackConfigChageByPage')
+const watchNodeConfigWebpackChageByPage = require('../watchNodeConfigWebpackChageByPage')
 
 const logWebpackRestart = () => console.log(Chalk.green.bold('\nWebpack restarted\n'))
 
@@ -22,5 +22,5 @@ module.exports = function (page) {
 
     }
 
-    watchNodeWebpackConfigChageByPage(page, callback, 100)
+    watchNodeConfigWebpackChageByPage(page, callback, 100)
 }

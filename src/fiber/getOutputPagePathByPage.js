@@ -1,4 +1,4 @@
-const getOutputPagePathByParams = (outputPath, projectName, pageName) => {
+const getOutputPagePathByPageByParams = (outputPath, projectName, pageName) => {
     return PATH.resolve(outputPath, `./${projectName}/${pageName}`)
 }
 
@@ -10,6 +10,6 @@ module.exports = function (page) {
 
     const { outputPath } = Config
     
-    path = getOutputPagePathByParams(outputPath, projectName, pageName)
+    path = getOutputPagePathByPageByParams(outputPath, projectName, pageName)
     return path
 }

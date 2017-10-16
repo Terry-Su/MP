@@ -1,3 +1,5 @@
+const Util = require('../util/index')
+
 const defaultInterface = require('./defaultInterface')
 
 const mapPlainObjectValuesAToB = (a, b) => {
@@ -7,11 +9,11 @@ const mapPlainObjectValuesAToB = (a, b) => {
 }
 
 function Interface() {
-  mapPlainObjectValuesAToB(defaultInterface, this)
+  Util.mapPlainObjectValuesAToB(defaultInterface, this)
 }
 
 Interface.prototype.updateInterface = function(interface = {}) {
-  mapPlainObjectValuesAToB(interface, this)
+  Util.mapPlainObjectValuesAToB(interface, this)
 }
 
 const interface = new Interface()

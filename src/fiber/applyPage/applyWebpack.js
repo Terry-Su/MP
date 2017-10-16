@@ -1,18 +1,18 @@
 const Interface = require('../../interface/index')
 const InitialState = require('../../store/initialState')
-const getNodeWebpackConfig = require('../getNodeWebpackConfig')
-const getOutputPagePath = require('../getOutputPagePath')
+const getNodeConfigWebpackByPage = require('../getNodeConfigWebpackByPage')
+const getOutputPagePathByPage = require('../getOutputPagePathByPage')
 
 const getKeys = object => Object.keys(object)
-const checkExsitRawWebpackConfigEntry = (rawWebpackConfig) => getKeys(rawWebpackConfig).includes('entry')
-const checkExsitRawWebpackConfigOutput = (rawWebpackConfig) => getKeys(rawWebpackConfig).includes('output')
+const checkExistRawWebpackConfigEntry = (rawWebpackConfig) => getKeys(rawWebpackConfig).includes('entry')
+const checkExistRawWebpackConfigOutput = (rawWebpackConfig) => getKeys(rawWebpackConfig).includes('output')
 const getFileName = filePath => PATH.basename(filePath)
 const getDefaultEntry = page => {
     const { path: pagePath } = page
     return PATH.resolve(pagePath, Interface.webpackEntryRelativePath || InitialState.webpackEntryRelativePath)
 }
 const getDefaultOutput = page => {
-    const outputPagePath = getOutputPagePath(page)
+    const outputPagePath = getOutputPagePathByPage(page)
     const path = PATH.resolve(outputPagePath, Interface.webpackOutputFolderRelativePath || InitialState.webpackOutputFolderRelativePath)
     const filename = Interface.webpackOutputFileName || InitialState.webpackOutputFileName
     return {
@@ -22,16 +22,16 @@ const getDefaultOutput = page => {
 }
 
 module.exports = function (page) {
-    const rawWebpackConfig = getNodeWebpackConfig(page)
+    const rawWebpackConfig = getNodeConfigWebpackByPage(page)
 
     const cookRawWebpackConfig = rawWebpackConfig => {
         let cookedWebpackConfig = Object.assign({}, rawWebpackConfig)
 
         const checkEntryAndCookWebpackConfigIfNeeded = webpackConfig => {
             // check entry
-            const exsitRawWebpackConfigEntry = checkExsitRawWebpackConfigEntry(webpackConfig)
-            // add default entry to webpack config if entry don't exsit
-            if (!exsitRawWebpackConfigEntry) {
+            const existRawWebpackConfigEntry = checkExistRawWebpackConfigEntry(webpackConfig)
+            // add default entry to webpack config if entry don't exist
+            if (!existRawWebpackConfigEntry) {
                 const entry = getDefaultEntry(page)
                 webpackConfig = Object.assign({}, webpackConfig, { entry })
             }
@@ -40,9 +40,9 @@ module.exports = function (page) {
 
         const checkOutputAndCookWebpackConfigIfNeeded = webpackConfig => {
             // check output
-            const exsitRawWebpackConfigOutput = checkExsitRawWebpackConfigOutput(webpackConfig)
-            // add default output to webpack config if output don't exsit
-            if (!exsitRawWebpackConfigOutput) {
+            const existRawWebpackConfigOutput = checkExistRawWebpackConfigOutput(webpackConfig)
+            // add default output to webpack config if output don't exist
+            if (!existRawWebpackConfigOutput) {
                 const output = getDefaultOutput(page)
                 webpackConfig = Object.assign({}, webpackConfig, { output })
             }

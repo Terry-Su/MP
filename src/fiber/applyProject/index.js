@@ -1,7 +1,21 @@
 const buildFolderStructure = require('./buildFolderStructure')
-const copyStaticToPublic = require('./copyStaticToPublic')
+const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput = require('./watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput')
+const getMpConfigRelativePathsToOutput = require('../getMpConfigRelativePathsToOutput')
+
 
 module.exports = function (project) {
-    buildFolderStructure(project)
-    copyStaticToPublic(project)
+    let projectInfo = project
+    project = project.project
+
+    buildFolderStructure(projectInfo)
+
+    const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded = (project) => {
+        const mpConfigRelativePathsToOutput = getMpConfigRelativePathsToOutput()
+        const exsitMpConfigRelativePathsToOutput = mpConfigRelativePathsToOutput !== undefined
+        if (exsitMpConfigRelativePathsToOutput) {
+            watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput(project)
+        }
+    }
+
+    watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded(project)  
 }

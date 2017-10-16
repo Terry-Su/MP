@@ -65,9 +65,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-console.log('page1')
+"use strict";
+
+
+console.log('page1');
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map

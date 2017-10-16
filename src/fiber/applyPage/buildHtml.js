@@ -1,5 +1,5 @@
-const getOutputPagePath = require('../getOutputPagePath')
-const getNodeHtmlConfig = require('../getNodeHtmlConfig')
+const getOutputPagePathByPage = require('../getOutputPagePathByPage')
+const getNodeConfigHtmlByPage = require('../getNodeConfigHtmlByPage')
 
 const logSuccess = path => {
     const fileName = PATH.basename(path)
@@ -16,10 +16,10 @@ const writeHtmlToPath = (content, path) => {
 
 
 module.exports = function (page) {
-    const htmlConfig = getNodeHtmlConfig(page)
+    const htmlConfig = getNodeConfigHtmlByPage(page)
 
     const { name: htmlName, content } = htmlConfig
-    const outputPagePath = getOutputPagePath(page)
+    const outputPagePath = getOutputPagePathByPage(page)
     const outputHtmlPath = getOutputHtmlPath(outputPagePath, htmlName)
 
     writeHtmlToPath(content, outputHtmlPath)

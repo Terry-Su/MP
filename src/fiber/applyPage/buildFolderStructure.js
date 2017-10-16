@@ -1,4 +1,4 @@
-const getOutputPagePath = (outputPath, pageName, projectName) => PATH.resolve(outputPath, `./${projectName}/${pageName}`)
+const getOutputPagePathByPage = (outputPath, pageName, projectName) => PATH.resolve(outputPath, `./${projectName}/${pageName}`)
 
 
 module.exports = function (page) {
@@ -6,6 +6,6 @@ module.exports = function (page) {
     const { name: projectName } = parentProject
 
     const { outputPath } = Config
-    const outputPagePath = getOutputPagePath(outputPath, pageName, projectName)
+    const outputPagePath = getOutputPagePathByPage(outputPath, pageName, projectName)
     FS.ensureDirSync(outputPagePath)
 }

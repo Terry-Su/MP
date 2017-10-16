@@ -2,11 +2,16 @@ const PATH = require('path')
 
 
 const config = {
-  openServerAutomatically: false,
-  ignoredFolders: ['shared', 'static'],
   srcPath: '',
   outputPath: '',
   shouldRemoveExtraFilesInPublic : false,
+
+  ignoredFolders: ['shared', 'static'],
+  // sync file or folder to output path
+  relativePathsToOutput: ['./static', './toSyncFile1', './toSyncFolder1'],
+  
+  openServerAutomatically: false,
+
 }
 
 
