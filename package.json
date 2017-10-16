@@ -57,6 +57,7 @@
     "vuex": "^2.4.1"
   },
   "devDependencies": {
+    "chokidar": "^1.7.0",
     "webpack-dev-server": "^2.9.2"
   }
 }

@@ -5,6 +5,7 @@ const cleanRequreCache = require('./cleanRequreCache')
 const equalPlainObjects = require('./equalPlainObjects')
 const logError = require('./logError')
 const mapPlainObjectValuesAToB = require('./mapPlainObjectValuesAToB')
+const watchPath = require('./watchPath/index')
 
 
 const util = {
@@ -15,6 +16,7 @@ const util = {
     equalPlainObjects,
     logError,
     mapPlainObjectValuesAToB,
+    watchPath,
 }
 
 module.exports = util
