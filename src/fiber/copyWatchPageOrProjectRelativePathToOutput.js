@@ -30,7 +30,6 @@ const watchAndCopy = (absolutePath, outputAbsolutePath) => {
         const shouldCopy = isReadyState || isFileChangedAndNotAbsolutePathState || isFileAddedAndNotAbsolutePathState  || isFolderAddedAndNotAbsolutePathState
 
         if (shouldCopy) {
-            console.log(event, path)
             copyAndLogIfAbsolutePathExist(absolutePath, outputAbsolutePath)
         }
     }
@@ -47,15 +46,6 @@ module.exports = function (getOutputItemPathByItem, relativePath, item) {
 
     const absolutePath = getAbsolutePath(itemPath, relativePath)
     const outputAbsolutePath = getAbsolutePathOutputPath(outputItemPath, relativePath)
-
-    // const copyPathToOutputIfPathExisted = (absolutePath, outputAbsolutePath) => {
-    //     // check if path existed
-    //     const existAbsolutePath = Util.checkPathExists(absolutePath)
-
-    //     if (existAbsolutePath) {
-    //         watchAndCopy(absolutePath, outputAbsolutePath)
-    //     }
-    // }
 
     resetWatcher(absolutePath)
     watchAndCopy(absolutePath, outputAbsolutePath)
