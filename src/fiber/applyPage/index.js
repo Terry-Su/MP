@@ -32,7 +32,7 @@ module.exports = function (page) {
         }
     }
 
-    const watchNodeConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded = (page) => {
+    const watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutputIfNeeded = (page) => {
         const nodeConfigRelativePathsToOutput = getNodeConfigRelativePathsToOutputByPage(page)
         const exsitNodeConfigRelativePathsToOutput = nodeConfigRelativePathsToOutput !== undefined
         if (exsitNodeConfigRelativePathsToOutput) {
@@ -46,5 +46,5 @@ module.exports = function (page) {
 
     watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded(page)
 
-    watchNodeConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded(page)
+    watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutputIfNeeded(page)
 }

@@ -1,6 +1,6 @@
 const getAbsolutePath = (itemPath, relativePath) => PATH.resolve(itemPath, relativePath)
 const getAbsolutePathOutputPath = (outputItemPath, relativePath) => PATH.resolve(outputItemPath, relativePath)
-const logSync = (path) => console.log(Chalk.green.bold(`${PATH.basename(path)} [Synced]`))
+const logSync = (path) => console.log(Chalk.green.bold(`${PATH.basename(path)} [Copied]`))
 const copyAndLogIfAbsolutePathExist = (absolutePath, outputAbsolutePath) => {
     try {
         FS.copySync(absolutePath, outputAbsolutePath)
@@ -10,33 +10,34 @@ const copyAndLogIfAbsolutePathExist = (absolutePath, outputAbsolutePath) => {
     }
 }
 
+const saveWatcher = (watcher, absolutePath) => Watcher.save(absolutePath, watcher)
+
+const resetWatcher = absolutePath => Watcher.reset(absolutePath)
+
 const watchAndCopy = (absolutePath, outputAbsolutePath) => {
     let watcher
 
-    if (watcher) {
-        watcher.close()
-    }
-
-    const callback = ({ path, type, fileType }) => {
-        const isReady = (type) => type === 'ready'
-        const isFileChangedAndNotAbsolutePath = (type, path) => type === 'fileChanged' && path !== absolutePath
-        const isFileAddedAndNotAbsolutePath = (type, path) => type === 'fileAdded' && path !== absolutePath
-        const isFolderChangedAndNotAbsolutePath = (type, path) => type === 'folderChanged' && path !== absolutePath
-        const isFolderAddedAndNotAbsolutePath = (type, path) => type === 'folderAdded' && path !== absolutePath
+    const callback = (event, path) => {
+        const isReady = (event) => event === 'ready'
+        const isFileChangedAndNotAbsolutePath = (event, path) => event === 'change' && path !== absolutePath
+        const isFileAddedAndNotAbsolutePath = (event, path) => event === 'add' && path !== absolutePath
+        const isFolderAddedAndNotAbsolutePath = (event, path) => event === 'folderAdded' && path !== absolutePath
          
-        const isReadyState = isReady(type)
-        const isFileChangedAndNotAbsolutePathState = isFileChangedAndNotAbsolutePath(type, path)
-        const isFileAddedAndNotAbsolutePathState = isFileAddedAndNotAbsolutePath(type, path)
-        const isFolderChangedAndNotAbsolutePathState = isFolderChangedAndNotAbsolutePath(type, path)
-        const isFolderAddedAndNotAbsolutePathState = isFolderAddedAndNotAbsolutePath(type, path)
-        const shouldCopy = isReadyState || isFileChangedAndNotAbsolutePathState || isFileAddedAndNotAbsolutePathState || isFolderChangedAndNotAbsolutePathState || isFolderAddedAndNotAbsolutePathState
+        const isReadyState = isReady(event)
+        const isFileChangedAndNotAbsolutePathState = isFileChangedAndNotAbsolutePath(event, path)
+        const isFileAddedAndNotAbsolutePathState = isFileAddedAndNotAbsolutePath(event, path)
+        const isFolderAddedAndNotAbsolutePathState = isFolderAddedAndNotAbsolutePath(event, path)
+        const shouldCopy = isReadyState || isFileChangedAndNotAbsolutePathState || isFileAddedAndNotAbsolutePathState  || isFolderAddedAndNotAbsolutePathState
 
         if (shouldCopy) {
+            console.log(event, path)
             copyAndLogIfAbsolutePathExist(absolutePath, outputAbsolutePath)
         }
     }
     
     watcher = Util.watchPath(absolutePath, callback)
+
+    saveWatcher(watcher, absolutePath)
 }
 
 module.exports = function (getOutputItemPathByItem, relativePath, item) {
@@ -56,5 +57,6 @@ module.exports = function (getOutputItemPathByItem, relativePath, item) {
     //     }
     // }
 
+    resetWatcher(absolutePath)
     watchAndCopy(absolutePath, outputAbsolutePath)
 }

@@ -10,6 +10,7 @@
       "name": "Launch Program",
       "cwd": "${workspaceFolder}/src/__test/main",
       "program": "${workspaceFolder}/src/__test/main/index.js"
+      // // "program": "${workspaceFolder}/src/module/__test/watcher.test.js"
     },
   ]
 }

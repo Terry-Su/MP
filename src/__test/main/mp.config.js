@@ -8,7 +8,7 @@ const config = {
   outputPath: PATH.resolve(__dirname, './public'),
   shouldRemoveExtraFilesInPublic : false,
   
-  relativePathsToOutput: ['./static', './toSyncFile1', './toSyncFolder1', './toSyncFolder123'],
+  relativePathsToOutput: ['./static', './toSyncFile1', './toSyncFolder1', './syncFolder3'],
 }
 
 

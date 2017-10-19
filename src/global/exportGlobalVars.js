@@ -11,6 +11,8 @@ const { getReduxState } = reduxSelector
 const Config = require('../config/index')
 const Util = require('../util/index')
 const InitialState = require('../store/initialState')
+const Readline = require('../module/readline')
+const Watcher = require('../module/watcher')
 
 const exportObjectToGlobal = (object, key) => {
     global[key] = object
@@ -36,6 +38,9 @@ const toExportVariables = {
     Config,
     Util,
     InitialState,
+    Readline,
+    Watcher,
+
 }
 
 
