@@ -3,7 +3,7 @@ const Interface = require('../interface/index')
 // mock data
 const { mockPagesToDevelop } = require('../mock/forTest')
 
-let isMock = false
+let isMock = true
 
 
 module.exports = {

@@ -2,43 +2,35 @@ const watchNodeConfigHtmlAndRebuildHtml = require('./watchNodeConfigHtmlAndRebui
 const watchNodeConfigWebpackAndRestartWebpack = require('./watchNodeConfigWebpackAndRestartWebpack')
 const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput = require('./watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput')
 const watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput = require('./watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput')
+const watchNodeConfigServerEntryContainStartAndEndAndStartAndWatchServer = require('./watchNodeConfigServerEntryContainStartAndEndAndStartAndWatchServer')
 const getNodeConfigHtmlByPage = require('../getNodeConfigHtmlByPage')
 const getNodeConfigWebpackByPage = require('../getNodeConfigWebpackByPage')
 const getMpConfigRelativePathsToOutput = require('../getMpConfigRelativePathsToOutput')
 const getNodeConfigRelativePathsToOutputByPage = require('../getNodeConfigRelativePathsToOutputByPage')
+const getNodeConfigServerEntryContainStartAndEndByPage = require('../getNodeConfigServerEntryContainStartAndEndByPage')
+
+
+const watchConfigAndImplement = (page, getConfigByPage, implementFnByPage) => page => {
+    const config = getConfigByPage(page)
+    const existConfig = config !== undefined
+    if (existConfig) {
+        implementFnByPage(page)
+    }
+}
+
 
 module.exports = function (page) {
-    const watchHtmlConfigAndRebuildHtmlIfNeeded = (page) => {
-        const htmlConfig = getNodeConfigHtmlByPage(page)
-        const existHtmlConfig = htmlConfig !== undefined
-        if (existHtmlConfig) {
-            watchNodeConfigHtmlAndRebuildHtml(page)
-        }
-    }
+    const watchHtmlConfigAndRebuildHtmlIfNeeded = watchConfigAndImplement(page, getNodeConfigHtmlByPage, watchNodeConfigHtmlAndRebuildHtml)
 
-    const watchWebpackConfigAndRebuildHtmlIfNeeded = (page) => {
-        const webpackConfig = getNodeConfigWebpackByPage(page)
-        const existWebpackConfig = webpackConfig !== undefined
-        if (existWebpackConfig) {
-            watchNodeConfigWebpackAndRestartWebpack(page)
-        }
-    }
+    const watchWebpackConfigAndRebuildHtmlIfNeeded = watchConfigAndImplement(page, getNodeConfigWebpackByPage, watchNodeConfigWebpackAndRestartWebpack)
 
-    const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded = (page) => {
-        const mpConfigRelativePathsToOutput = getMpConfigRelativePathsToOutput()
-        const exsitMpConfigRelativePathsToOutput = mpConfigRelativePathsToOutput !== undefined
-        if (exsitMpConfigRelativePathsToOutput) {
-            watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput(page)
-        }
-    }
+    const watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded = watchConfigAndImplement(page, getMpConfigRelativePathsToOutput, watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutput)
 
-    const watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutputIfNeeded = (page) => {
-        const nodeConfigRelativePathsToOutput = getNodeConfigRelativePathsToOutputByPage(page)
-        const exsitNodeConfigRelativePathsToOutput = nodeConfigRelativePathsToOutput !== undefined
-        if (exsitNodeConfigRelativePathsToOutput) {
-            watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput(page)
-        }
-    }
+    const watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutputIfNeeded = watchConfigAndImplement(page, getNodeConfigRelativePathsToOutputByPage, watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutput)
+
+    const watchNodeConfigServerEntryContainStartAndEndAndStartAndWatchServerIfNeeded = watchConfigAndImplement(page, getNodeConfigServerEntryContainStartAndEndByPage, watchNodeConfigServerEntryContainStartAndEndAndStartAndWatchServer)
+    
+
 
     watchHtmlConfigAndRebuildHtmlIfNeeded(page)
 
@@ -47,4 +39,6 @@ module.exports = function (page) {
     watchMpConfigRelativePathsToOutputAndCopyWatchMpConfigRelativePathsToOutputIfNeeded(page)
 
     watchNodeConfigRelativePathsToOutputAndCopyWatchNodeConfigRelativePathsToOutputIfNeeded(page)
+
+    watchNodeConfigServerEntryContainStartAndEndAndStartAndWatchServerIfNeeded(page)
 }

@@ -14,6 +14,8 @@ const PATH = require('path')
 //     },
 //     relativePathsToOutput: '',
 //     outputPath: '', 
+//     // server.js: `module.exports = { start() {}, end() {} }`
+//     serverEntryContainStartAndEnd: '',
 // }
 const config = {
 
