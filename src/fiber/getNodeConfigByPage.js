@@ -1,5 +1,6 @@
 const Interface = require('../interface/index')
 const InitialState = require('../store/initialState')
+const defaultNodeConfig = require('../config/defaultNodeConfig')
 
 
 const getNodeConfigPath = page => {
@@ -14,6 +15,8 @@ module.exports = function (page) {
     try {
         nodeConfig = require(nodeConfigPath)
         Util.cleanRequreCache(nodeConfigPath)
+
+        nodeConfig = Object.assign({}, defaultNodeConfig, nodeConfig)
     } catch (e) {
         
     }

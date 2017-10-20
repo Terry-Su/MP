@@ -1,3 +1,6 @@
+const getNodeConfigOutputPathByPage = require('./getNodeConfigOutputPathByPage')
+
+
 const getOutputPagePathByPageByParams = (outputPath, projectName, pageName) => {
     return PATH.resolve(outputPath, `./${projectName}/${pageName}`)
 }
@@ -9,7 +12,9 @@ module.exports = function (page) {
     const { name: projectName } = parentProject
 
     const { outputPath } = Config
+
+    const nodeConfigOutputPath = getNodeConfigOutputPathByPage(page)
     
-    path = getOutputPagePathByPageByParams(outputPath, projectName, pageName)
+    path = nodeConfigOutputPath || getOutputPagePathByPageByParams(outputPath, projectName, pageName)
     return path
 }

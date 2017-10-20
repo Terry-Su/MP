@@ -42,7 +42,7 @@ module.exports = {
         }
 
 
-        // [4] map each page - watch and build html, webpack's output files, static files (caveat: rebuild webpack if webpack's config is changed)
+        // [4] map each page - watch and build html, webpack's output files, files to copy (caveat: rebuild webpack if webpack's config is changed), load server by serverPath
         R.map(applyPage, pagesToDevelop)
 
 

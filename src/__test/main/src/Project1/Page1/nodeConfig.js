@@ -41,6 +41,8 @@ module.exports = {
 <html>
   <body>index.html</body>
 </html>
-`
+`,
   },
+  relativePathsToOutput: ['pageFolder1', 'pageFolder2', 'pageFolder3'],
+  outputPath: PATH.resolve(__dirname, '../../../tmpPublic/customPage1')
 }
