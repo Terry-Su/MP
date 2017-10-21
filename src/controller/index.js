@@ -21,6 +21,7 @@ module.exports = {
         const updatePagesInfoToDevelopByReadline = require('../fiber/updatePagesInfoToDevelopByReadline')
         const applyPage = require('../fiber/applyPage/index')
         const applyProject = require('../fiber/applyProject/index')
+        const watchMpConfigOutputServerAndServerOutputPathIfNeeded = require('../fiber/watchMpConfigOutputServerAndServerOutputPathIfNeeded')
         // ------ import after interface applied ------
 
         // [1] update projects by mp.config
@@ -46,6 +47,7 @@ module.exports = {
         R.map(applyPage, pagesToDevelop)
 
 
-        // [5] list page links
+        // [5] server output path if needed
+        watchMpConfigOutputServerAndServerOutputPathIfNeeded()
     }
 }

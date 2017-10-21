@@ -6,12 +6,7 @@ const config = {
   ignoredFolders: ['static', '__share'],
   srcPath: PATH.resolve(__dirname, './src'),
   outputPath: PATH.resolve(__dirname, './public'),
-  relativePathsToOutput: ['./static', 'toSyncFolder1'],
-  outputServer: {
-    port: 3200,
-    shouldWatch: true,
-    shouldOpen: true,
-  },
+  relativePathsToOutput: [],
 }
 
 

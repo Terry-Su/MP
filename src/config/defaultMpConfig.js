@@ -1,17 +1,31 @@
 const PATH = require('path')
 
 
+/**
+ * Mp config
+ */
+const structure = {
+  srcPath: '',
+  outputPath: '',
+  shouldRemoveExtraFilesInPublic: false,
+  ignoredFolders: [],
+  // sync file or folder to output path
+  relativePathsToOutput: [],
+  outputServer: {
+    port: 3200,
+    shouldWatch: true,
+    open: true,
+  },
+  openServerAutomatically: false,
+}
 const config = {
   srcPath: '',
   outputPath: '',
-  shouldRemoveExtraFilesInPublic : false,
-
-  ignoredFolders: ['shared', 'static'],
+  shouldRemoveExtraFilesInPublic: false,
+  ignoredFolders: [],
   // sync file or folder to output path
-  relativePathsToOutput: ['./static', './toSyncFile1', './toSyncFolder1'],
-  
+  relativePathsToOutput: [],
   openServerAutomatically: false,
-
 }
 
 

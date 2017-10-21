@@ -1,10 +1,10 @@
 const copyWatchMpConfigRelativePathsToOutput = require('./copyWatchMpConfigRelativePathsToOutput')
-const watchMpConfigRelativePathsToOutputByPage = require('../watchMpConfigRelativePathsToOutputByPage')
+const watchMpConfigRelativePathsToOutputByPageOrProject = require('../watchMpConfigRelativePathsToOutputByPageOrProject')
 
 
 module.exports = function (project) {
     copyWatchMpConfigRelativePathsToOutput(project)
     
     const callback = () => copyWatchMpConfigRelativePathsToOutput(project)
-    watchMpConfigRelativePathsToOutputByPage(project, callback)
+    watchMpConfigRelativePathsToOutputByPageOrProject(project, callback)
 }
