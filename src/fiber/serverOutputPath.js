@@ -12,7 +12,8 @@ module.exports = function () {
       baseDir: outputPath,
       directory: true,
     },
-    files: shouldWatch ? `${outputPath}/**` : [],
+    files: shouldWatch ? [`${outputPath}/**`] : [],
+    // files: `${outputPath}/index.html`,
     port,
     open
   })
