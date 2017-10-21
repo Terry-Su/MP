@@ -1,5 +1,5 @@
 const { init } = require('../../controller/index.js')
-
+// init()
 try {
   init()
 } catch(e) {

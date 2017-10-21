@@ -8,7 +8,7 @@ const config = {
   outputPath: PATH.resolve(__dirname, './public'),
   relativePathsToOutput: ['./static', 'toSyncFolder1'],
   outputServer: {
-    port: 3200,
+    port: 3000,
     shouldWatch: true,
     shouldOpen: true,
   },

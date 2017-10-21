@@ -5,6 +5,14 @@ const PATH = require('path')
  * Mp config
  */
 const structure = {
+  webpack: {
+
+  },
+  html: {
+    name: '',
+    content: '',
+    relativePath: '',
+  },
   srcPath: '',
   outputPath: '',
   shouldRemoveExtraFilesInPublic: false,
@@ -14,7 +22,7 @@ const structure = {
   outputServer: {
     port: 3200,
     shouldWatch: true,
-    open: true,
+    shouldOpen: true,
   },
   openServerAutomatically: false,
 }
