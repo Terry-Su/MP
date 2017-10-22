@@ -15,7 +15,6 @@ const structure = {
   },
   srcPath: '',
   outputPath: '',
-  shouldRemoveExtraFilesInPublic: false,
   ignoredFolders: [],
   // sync file or folder to output path
   relativePathsToOutput: [],
@@ -41,7 +40,6 @@ const config = {
   shouldWatchMpConfig: true,
   shouldWatchNodeConfig: true,
   shouldWatchFile: true,
-  shouldRemoveExtraFilesInPublic: false,  
 }
 
 
