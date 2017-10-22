@@ -3,7 +3,7 @@ const Interface = require('../interface/index')
 // mock data
 const { mockPagesToDevelop } = require('../mock/forTest')
 
-let isMock = true
+let isMock = false
 
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
         exportGlobalVars()
         
         const updateProjects = require('../fiber/updateProjects')
-        const updatePagesInfoToDevelopByReadline = require('../fiber/updatePagesInfoToDevelopByReadline')
+        const updatePagesInfoToDevelop = require('../fiber/updatePagesInfoToDevelop')
         const applyPage = require('../fiber/applyPage/index')
         const applyProject = require('../fiber/applyProject/index')
         const watchMpConfigOutputServerAndServerOutputPathIfNeeded = require('../fiber/watchMpConfigOutputServerAndServerOutputPathIfNeeded')
@@ -34,7 +34,7 @@ module.exports = {
 
         // [3] get pages info to develop
         if (!isMock) {
-            updatePagesInfoToDevelopByReadline()
+            updatePagesInfoToDevelop()
             pagesToDevelop = getReduxState().pagesToDevelop
 
         }

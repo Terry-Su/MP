@@ -27,6 +27,10 @@ const structure = {
   shouldWatchMpConfig: true,
   shouldWatchNodeConfig: true,
   shouldWatchFile: true,
+  readlineCommands: {
+    0: [0],
+    1: [1, 2]
+  },
 }
 const config = {
   srcPath: '',

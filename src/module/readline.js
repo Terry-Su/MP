@@ -21,9 +21,12 @@ const getItemsByDataOfReadMultipleLines = dataOfReadMultipleLines => {
     return items
 }
 
+const existReadCommands = () => {
+    return Config.readlineCommands && readlineCommands.length > 0
+}
+
 
 let self
-
 
 const readline = {
     showProjectsToChooseTitle() {
@@ -36,6 +39,8 @@ const readline = {
      * @returns {Array} projectInfos [ { project: { name: '', path: '' }, pages: [ { name: '', path: '' } ] } ]
      */
     readlinesOfProjects() {
+        let projectInfos
+
         const getDataValue = data => data.value
         const getParamsForReadMultipleLines = projects => {
             let params = []
@@ -66,8 +71,9 @@ const readline = {
         const { projects } = getReduxState()
 
         const paramsForReadMultipleLines = getParamsForReadMultipleLines(projects)
+
         const dataOfReadMultipleLines = readMultipleLines(paramsForReadMultipleLines).then(data => data)
-        const projectInfos = getProjectInfosByDataOfReadMultipleLines(dataOfReadMultipleLines)
+        projectInfos = getProjectInfosByDataOfReadMultipleLines(dataOfReadMultipleLines)
 
         return projectInfos
     },
@@ -102,6 +108,57 @@ const readline = {
         const paramsForReadMultipleLines = getParamsForReadMultipleLines(projectInfo)
         const dataOfReadMultipleLines = readMultipleLines(paramsForReadMultipleLines).then(data => data)
         const pages = getPagesByDataOfReadMultipleLines(dataOfReadMultipleLines)
+        return pages
+    },
+    /**
+     * @returns {Array} [ { name: '', path: '', parent: { name: '', path; '' } } ]
+     */
+    getPagesByReadlineCommands() {
+        let pages = []
+        const { readlineCommands } = Config
+        const { projects } = getReduxState()
+
+        const hasAllProjectsCommand = projectCommands => projectCommands.includes('0')
+        const hasAllPagesCommand = pageCommands => pageCommands.includes(0)
+        const addPagesByReadlineCommands = (readlineCommands, projects) => {
+            const projectCommands = Object.keys(readlineCommands)
+
+            const addPagesByProjectCommand = projectCommand => {
+                const projectIndex = +projectCommand - 1
+                const project = projects[projectIndex]
+                const { pages: thePages } = project
+
+                const pageCommands = readlineCommands[projectCommand]
+
+                if (hasAllPagesCommand(pageCommands)) {
+                    pages = pages.concat(thePages)
+                }
+
+                if (!hasAllPagesCommand(pageCommands)) {
+                    pageCommands.map(pageCommand => {
+                        const pageIndex = +pageCommand - 1
+                        const page = thePages[pageIndex]
+                        pages.push(page)
+                    })
+                }
+            }
+
+            if (hasAllProjectsCommand(projectCommands)) {
+                projects.map(project => {
+                    const { pages: thePages } = project
+                    pages = pages.concat(thePages)
+                })
+
+                return pages
+            }
+
+            if (!hasAllProjectsCommand(projectCommands)) {
+                R.map(addPagesByProjectCommand, projectCommands)
+            }
+        }
+
+        addPagesByReadlineCommands(readlineCommands, projects)
+
         return pages
     }
 }

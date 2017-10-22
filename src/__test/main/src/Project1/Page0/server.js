@@ -9,7 +9,7 @@ module.exports = {
                 directory: true,
             },
             files: `${outputPagePath}/**`,
-            port: 3100,
+            port: 3300,
             ui: false
         })
     },
