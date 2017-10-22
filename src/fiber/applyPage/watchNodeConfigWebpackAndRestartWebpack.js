@@ -8,19 +8,21 @@ module.exports = function (page) {
 
     webpackWatcher = applyWebpack(page)
 
-    const callback = () => {
-        webpackWatcher.close(() => {
-            try {
-                webpackWatcher = applyWebpack(page)
+    if (Config.shouldWatchNodeConfig) {
+        const callback = () => {
+            webpackWatcher.close(() => {
+                try {
+                    webpackWatcher = applyWebpack(page)
 
-                logWebpackRestart()
-            } catch (e) {
-                Util.logError(e)
-            }
-            
-        })
+                    logWebpackRestart()
+                } catch (e) {
+                    Util.logError(e)
+                }
 
+            })
+
+        }
+
+        watchNodeConfigWebpackChageByPage(page, callback, 100)
     }
-
-    watchNodeConfigWebpackChageByPage(page, callback, 100)
 }

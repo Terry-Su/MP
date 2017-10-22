@@ -47,6 +47,13 @@ module.exports = function (getOutputItemPathByItem, relativePath, item) {
     const absolutePath = getAbsolutePath(itemPath, relativePath)
     const outputAbsolutePath = getAbsolutePathOutputPath(outputItemPath, relativePath)
 
-    resetWatcher(absolutePath)
-    watchAndCopy(absolutePath, outputAbsolutePath)
+
+    if (!Config.shouldWatchFile) {
+        copyAndLogIfAbsolutePathExist(absolutePath, outputAbsolutePath)
+    }
+
+    if (Config.shouldWatchFile) {
+        resetWatcher(absolutePath)
+        watchAndCopy(absolutePath, outputAbsolutePath)
+    }
 }

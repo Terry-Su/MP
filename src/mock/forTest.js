@@ -3,11 +3,11 @@ const PATH = require('path')
 module.exports = {
     mockPagesToDevelop: [
         {
-            name: 'Page0',
-            path: PATH.resolve(__dirname, '../__test/main/src/Project1/Page0'),
+            name: 'Page',
+            path: PATH.resolve(__dirname, '../__test/main/src/WebpackProject/Page'),
             parentProject:{ 
-                name: "Project1",
-                path:  PATH.resolve(__dirname, '../__test/main/src/Project1')
+                name: "WebpackProject",
+                path:  PATH.resolve(__dirname, '../__test/main/src/WebpackProject')
             }
         },
     ]

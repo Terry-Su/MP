@@ -4,7 +4,9 @@ const watchMpConfigRelativePathsToOutputByPageOrProject = require('../watchMpCon
 
 module.exports = function (page) {
     copyWatchMpConfigRelativePathsToOutput(page)
-    
-    const callback = () => copyWatchMpConfigRelativePathsToOutput(page)
-    watchMpConfigRelativePathsToOutputByPageOrProject(page, callback)
+
+    if (Config.shouldWatchMpConfig) {
+        const callback = () => copyWatchMpConfigRelativePathsToOutput(page)
+        watchMpConfigRelativePathsToOutputByPageOrProject(page, callback)
+    }
 }

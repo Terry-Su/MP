@@ -4,7 +4,9 @@ const watchNodeConfigRelativePathsToOutputByPage = require('../watchNodeConfigRe
 
 module.exports = function (page) {
     copyWatchNodeConfigRelativePathsToOutput(page)
-    
-    const callback = () => copyWatchNodeConfigRelativePathsToOutput(page)
-    watchNodeConfigRelativePathsToOutputByPage(page, callback)
+
+    if (Config.shouldWatchNodeConfig) {
+        const callback = () => copyWatchNodeConfigRelativePathsToOutput(page)
+        watchNodeConfigRelativePathsToOutputByPage(page, callback)
+    }
 }

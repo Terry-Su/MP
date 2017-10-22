@@ -8,7 +8,7 @@ const startServer = (serverEntryPath, page) => {
     try {
         const server = require(serverEntryPath)
         Util.cleanRequreCache(serverEntryPath)
-        
+
         const outputPagePath = getOutputPagePathByPage(page)
         server.end(outputPagePath, page)
         server.start(outputPagePath, page)
@@ -23,11 +23,11 @@ const watch = (absolutePath, callback) => {
     let watcher
 
     const watcherCallback = (event, path) => {
-        const isFileAddedAndNotAbsolutePath = (event, path) => event === 'add' && path !== absolutePath        
+        const isFileAddedAndNotAbsolutePath = (event, path) => event === 'add' && path !== absolutePath
         const isFileChangedAndNotAbsolutePath = (event, path) => event === 'change' && path !== absolutePath
 
         const isFileChangedAndNotAbsolutePathState = isFileChangedAndNotAbsolutePath(event, path)
-        const isFileAddedAndNotAbsolutePathState = isFileAddedAndNotAbsolutePath(event, path)        
+        const isFileAddedAndNotAbsolutePathState = isFileAddedAndNotAbsolutePath(event, path)
         const shouldCallback = isFileChangedAndNotAbsolutePath || isFileAddedAndNotAbsolutePathState
 
         if (shouldCallback) {
@@ -56,8 +56,16 @@ module.exports = function (page) {
     const absoluteServerEntryPath = getAbsoluteServerEntryPath(page, relativeServerEntryPath)
 
     try {
-        resetWatcher(absoluteServerEntryPath)
-        watchAndServer(absoluteServerEntryPath, page)
+
+        if (!Config.shouldWatchFile) {
+            startServer(absoluteServerEntryPath, page)
+        }
+
+        if (Config.shouldWatchFile) {
+            resetWatcher(absoluteServerEntryPath)
+            watchAndServer(absoluteServerEntryPath, page)
+        }
+        
     } catch (e) {
 
     }

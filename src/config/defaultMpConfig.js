@@ -24,16 +24,20 @@ const structure = {
     shouldWatch: true,
     shouldOpen: true,
   },
-  openServerAutomatically: false,
+  shouldWatchMpConfig: true,
+  shouldWatchNodeConfig: true,
+  shouldWatchFile: true,
 }
 const config = {
   srcPath: '',
   outputPath: '',
-  shouldRemoveExtraFilesInPublic: false,
   ignoredFolders: [],
   // sync file or folder to output path
   relativePathsToOutput: [],
-  openServerAutomatically: false,
+  shouldWatchMpConfig: true,
+  shouldWatchNodeConfig: true,
+  shouldWatchFile: true,
+  shouldRemoveExtraFilesInPublic: false,  
 }
 
 
