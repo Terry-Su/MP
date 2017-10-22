@@ -9,8 +9,8 @@ module.exports = {
                 directory: true,
             },
             files: `${outputPagePath}/**`,
-            port: 3100,
-            ui: false
+            port: 3200,
+            ui: false,
         })
     },
     end(outputPagePath, page) {

@@ -3,14 +3,14 @@ const Interface = require('../interface/index')
 // mock data
 const { mockPagesToDevelop } = require('../mock/forTest')
 
-let isMock = true
+let isMock = false
 
 
 module.exports = {
     init(interface) {
         let pagesToDevelop
 
-        // [0]update and apply interface config
+        // [0] update and apply interface config
         Interface.updateInterface(interface)
 
         // ------ import after interface applied ------

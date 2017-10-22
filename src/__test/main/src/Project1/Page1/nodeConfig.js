@@ -3,46 +3,10 @@ const PATH = require('path')
 
 
 module.exports = {
-  webpack: {
-    module: {
-      rules: [
-        {
-          test: /\.js.*/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['es2015', 'stage-2'],
-              }
-            }
-          ]
-        },
-        {
-          test: /\.(html)$/,
-          use: {
-            loader: 'html-loader',
-            options: {
-              attrs: [':data-src']
-            }
-          }
-        },
-      ]
-    },
-    devtool: 'source-map',
-    plugins: process.env.production ? [
-      new UglifyJSPlugin()
-    ] : [],
-  },
-
+  // serverEntryContainStartAndEnd: PATH.resolve(__dirname, './server.js')
   html: {
-    name: 'index.html',
-    content: `
-<html>
-  <body>index.html</body>
-</html>
-`,
+    relativePath: './index.html'
   },
-  relativePathsToOutput: ['pageFolder1', 'pageFolder2', 'pageFolder3'],
-  outputPath: PATH.resolve(__dirname, '../../../tmpPublic/customPage1')
+  relativePathsToOutput: ['css', 'script'],  
+  serverEntryContainStartAndEnd: 'server.js',
 }

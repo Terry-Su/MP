@@ -40,7 +40,8 @@ const readline = {
         const getParamsForReadMultipleLines = projects => {
             let params = []
 
-            const allProjectInfos = projects
+            const allProjectInfos = Object.assign([], projects)
+            allProjectInfos.isAll = true
 
             params.push({
                 pressKey: '0',
