@@ -19,15 +19,15 @@ const watchAndCopy = (absolutePath, outputAbsolutePath) => {
 
     const callback = (event, path) => {
         const isReady = (event) => event === 'ready'
-        const isFileChangedAndNotAbsolutePath = (event, path) => event === 'change' && path !== absolutePath
-        const isFileAddedAndNotAbsolutePath = (event, path) => event === 'add' && path !== absolutePath
+        const isFileChanged = (event, path) => event === 'change'
+        const isFileAdded = (event, path) => event === 'add'
         const isFolderAddedAndNotAbsolutePath = (event, path) => event === 'folderAdded' && path !== absolutePath
          
         const isReadyState = isReady(event)
-        const isFileChangedAndNotAbsolutePathState = isFileChangedAndNotAbsolutePath(event, path)
-        const isFileAddedAndNotAbsolutePathState = isFileAddedAndNotAbsolutePath(event, path)
+        const isFileChangedState = isFileChanged(event, path)
+        const isFileAddedState = isFileAdded(event, path)
         const isFolderAddedAndNotAbsolutePathState = isFolderAddedAndNotAbsolutePath(event, path)
-        const shouldCopy = isReadyState || isFileChangedAndNotAbsolutePathState || isFileAddedAndNotAbsolutePathState  || isFolderAddedAndNotAbsolutePathState
+        const shouldCopy = isReadyState || isFileChangedState || isFileAddedState  || isFolderAddedAndNotAbsolutePathState
 
         if (shouldCopy) {
             copyAndLogIfAbsolutePathExist(absolutePath, outputAbsolutePath)

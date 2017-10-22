@@ -4,9 +4,6 @@ const PATH = require('path')
 
 module.exports = {
   // serverEntryContainStartAndEnd: PATH.resolve(__dirname, './server.js')
-  html: {
-    relativePath: './index.html'
-  },
-  relativePathsToOutput: ['css', 'script'],  
+  relativePathsToOutput: ['index.html', 'css', 'script'],    
   serverEntryContainStartAndEnd: 'server.js',
 }
