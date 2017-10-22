@@ -7,11 +7,11 @@ const config = {
   srcPath: PATH.resolve(__dirname, './src'),
   outputPath: PATH.resolve(__dirname, './public'),
   // relativePathsToOutput: ['./static', 'toSyncFolder1'],
-  outputServer: {
-    port: 3100,
-    shouldWatch: true,
-    shouldOpen: true,
-  },
+  // outputServer: {
+  //   port: 3100,
+  //   shouldWatch: true,
+  //   shouldOpen: true,
+  // },
 }
 
 

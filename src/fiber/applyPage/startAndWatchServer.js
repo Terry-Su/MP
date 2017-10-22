@@ -1,16 +1,17 @@
+const getOutputPagePathByPage = require('../getOutputPagePathByPage')
 const getNodeConfigServerEntryContainStartAndEndByPage = require('../getNodeConfigServerEntryContainStartAndEndByPage')
-
 
 const saveWatcher = (watcher, absolutePath) => Watcher.save(absolutePath, watcher)
 const resetWatcher = absolutePath => Watcher.reset(absolutePath)
 
-const startServer = (serverEntryPath) => {
+const startServer = (serverEntryPath, page) => {
     try {
         const server = require(serverEntryPath)
         Util.cleanRequreCache(serverEntryPath)
         
-        server.end()
-        server.start()
+        const outputPagePath = getOutputPagePathByPage(page)
+        server.end(outputPagePath, page)
+        server.start(outputPagePath, page)
 
 
     } catch (e) {
@@ -39,18 +40,24 @@ const watch = (absolutePath, callback) => {
     saveWatcher(watcher, absolutePath)
 }
 
-const watchAndCopy = (serverEntryPath) => {
-    const callback = () => startServer(serverEntryPath)
+const watchAndServer = (serverEntryPath, page) => {
+    const callback = () => startServer(serverEntryPath, page)
     watch(serverEntryPath, callback)
+}
+
+const getAbsoluteServerEntryPath = (page, relativeServerEntryPath) => {
+    const { path: pagePath } = page
+    return PATH.resolve(pagePath, relativeServerEntryPath)
 }
 
 
 module.exports = function (page) {
-    const serverEntryPath = getNodeConfigServerEntryContainStartAndEndByPage(page)
+    const relativeServerEntryPath = getNodeConfigServerEntryContainStartAndEndByPage(page)
+    const absoluteServerEntryPath = getAbsoluteServerEntryPath(page, relativeServerEntryPath)
 
     try {
-        resetWatcher(serverEntryPath)
-        watchAndCopy(serverEntryPath)
+        resetWatcher(absoluteServerEntryPath)
+        watchAndServer(absoluteServerEntryPath, page)
     } catch (e) {
 
     }

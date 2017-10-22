@@ -1,9 +1,9 @@
 module.exports = {
-    start() {
-        console.log('server start!')
+    start( outputPagePath, page ) {
+        console.log('server start!', outputPagePath, page)
     },
-    end() {
-        console.log('server end!')
+    end(outputPagePath, page) {
+        console.log('server end!', outputPagePath, page)
     }
 
 }

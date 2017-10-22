@@ -7,5 +7,6 @@ module.exports = {
   html: {
     relativePath: './index.html'
   },
-  relativePathsToOutput: ['css', 'script'],  
+  // relativePathsToOutput: ['css', 'script'],  
+  serverEntryContainStartAndEnd: 'server.js',
 }
