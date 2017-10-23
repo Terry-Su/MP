@@ -1,22 +1,42 @@
 const browserSync = require("browser-sync")
+const { isPlainObject, isBoolean } = require("lodash")
+
 
 module.exports = function () {
-  const { outputPath, outputServer = {} } = Config
-  const { port, shouldWatch, shouldOpen: open } = outputServer
-  const bs = browserSync.create()  
+  let port
+  let shouldWatch = true
+  let shouldOpen = true
+  let shouldServer = false
 
-  const shouldServer = port !== undefined && shouldWatch !== undefined
+  const bs = browserSync.create()
+  const { outputPath, outputServer } = Config
 
-  shouldServer && bs.init({
-    server: {
-      baseDir: outputPath,
-      directory: true,
-    },
-    files: shouldWatch ? [`${outputPath}/**`] : [],
-    // files: `${outputPath}/index.html`,
-    port,
-    open
-  })
+  if (isPlainObject(outputServer)) {
+    port = outputServer.port
+    shouldWatch = outputServer.shouldWatch
+    shouldOpen = outputServer.shouldOpen
+
+    shouldServer = true
+  }
+
+  if (isBoolean(outputServer)) {
+    shouldServer = outputServer
+  }
+
+  if (shouldServer) {
+    let serverconfig = {
+      server: {
+        baseDir: outputPath,
+        directory: true,
+      },
+      files: shouldWatch ? [`${outputPath}/**`] : [],
+      open: shouldOpen,
+    }
+  
+    serverconfig = Object.assign(serverconfig, port ? { port } : {})
+
+    bs.init(serverconfig)
+  }
 
   return bs
 }

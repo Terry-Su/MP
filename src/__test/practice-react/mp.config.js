@@ -7,6 +7,7 @@ const config = {
   readlineCommands: {
     1: [1]
   },
+  outputServer: true
 }
 
 

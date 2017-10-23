@@ -1,1 +1,20 @@
-console.log(123)
+import React from 'react'
+import { render } from 'react-dom'
+
+
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                123
+            </div>
+        )
+    }
+}
+
+
+
+render(
+    <App />,
+    document.getElementById('app')
+)
