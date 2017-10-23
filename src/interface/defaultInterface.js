@@ -1,6 +1,6 @@
 module.exports = {
-  // the relative path of mp.config.js
-  mpConfigRelativePath: null,
+  // the path of mp.config.js
+  mpConfigPath: null,
 
   // the relative path of nodeConfig.js
   nodeConfigRelativePath: null,

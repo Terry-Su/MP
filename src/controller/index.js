@@ -1,4 +1,5 @@
 const Interface = require('../interface/index')
+const { UPDATE_MP_CONFIG_PATH } = require('../module/main')
 
 // mock data
 const { mockPagesToDevelop } = require('../mock/forTest')
@@ -7,12 +8,20 @@ let isMock = false
 
 
 module.exports = {
-    init(interface) {
+    init(paramObject = {}) {
+        const {
+            interface,
+            mpConfigPath,
+        } = paramObject
+
         let pagesToDevelop
+
+        // [0] update  mp config's path
+        UPDATE_MP_CONFIG_PATH(mpConfigPath)
 
         // [0] update and apply interface config
         Interface.updateInterface(interface)
-
+        
         // ------ import after interface applied ------
         const exportGlobalVars = require('../global/exportGlobalVars.js')
         exportGlobalVars()

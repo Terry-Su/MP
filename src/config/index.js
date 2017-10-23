@@ -2,13 +2,11 @@
 const PATH = require('path')
 
 const Util = require('../util/index')
-const Interface = require('../interface/index')
 const InitialState = require('../store/initialState')
 const defaultMpConfig = require('./defaultMpConfig')
+const Selector = require('../redux/selector/index')
 
-
-const getConfigPathFileName = () => Interface.mpConfigRelativePath || InitialState.mpConfigRelativePath
-const mpConfigPath = PATH.resolve(process.cwd(), getConfigPathFileName())
+const mpConfigPath = Selector.getMpConfigPath()
 
 const getRealtimeConfig = () => {
     const mpConfig = require(mpConfigPath)

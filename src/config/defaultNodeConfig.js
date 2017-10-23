@@ -7,10 +7,17 @@ const PATH = require('path')
  * node config of every page
  */
 const structure = {
-    webpack: {},
-    html: {
+    getWebpack() {
+        return {
+    
+        }
+      },
+    getHtml() {
+    return {
         name: '',
         content: '',
+        relativePath: '',
+    }
     },
     relativePathsToOutput: '',
     outputPath: '', 

@@ -11,6 +11,11 @@ const actions = {
         value
     }
   },
+  UPDATE_MP_CONFIG_PATH(value) {
+    return {
+        value
+    }
+  },
 }
 
 module.exports = createActions(actions)

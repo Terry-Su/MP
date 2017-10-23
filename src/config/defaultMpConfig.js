@@ -5,18 +5,6 @@ const PATH = require('path')
  * Mp config
  */
 const structure = {
-  getWebpack() {
-    return {
-
-    }
-  },
-  getHtml() {
-    return {
-      name: '',
-      content: '',
-      relativePath: '',
-    }
-  },
   srcPath: '',
   outputPath: '',
   ignoredFolders: [],
@@ -24,8 +12,8 @@ const structure = {
   relativePathsToOutput: [],
   outputServer: {
     port: 3200,
-    shouldWatch: true,
-    shouldOpen: true,
+    watch: true,
+    open: true,
   },
   shouldWatchMpConfig: true,
   shouldWatchNodeConfig: true,

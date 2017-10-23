@@ -13,8 +13,8 @@ module.exports = function () {
 
   if (isPlainObject(outputServer)) {
     port = outputServer.port
-    shouldWatch = outputServer.shouldWatch
-    shouldOpen = outputServer.shouldOpen
+    shouldWatch = outputServer.watch === undefined ? shouldWatch: outputServer.watch
+    shouldOpen = outputServer.open === undefined ? shouldOpen: outputServer.open
 
     shouldServer = true
   }

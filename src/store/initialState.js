@@ -1,7 +1,8 @@
+const PATH = require('path')
 const initialStateOfRedux = require('./initialStateOfRedux')
 
 module.exports = Object.assign(initialStateOfRedux, {
-  mpConfigRelativePath: './mp.config.js',
+  mpConfigPath: PATH.resolve(process.cwd(), './mp.config.js'),
   nodeConfigRelativePath: './nodeConfig.js',
   webpackEntryRelativePath: './entry.js',
   webpackOutputFileName: 'bundle.js',

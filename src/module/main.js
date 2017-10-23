@@ -1,3 +1,5 @@
+const reduxStore = require('../redux/index')
+
 const main = {
     UPDATE_PROJECTS(projects) {
         reduxStore.dispatch({
@@ -19,6 +21,12 @@ const main = {
             value: pagesToDevelop.concat(pages)
         })
     },
+    UPDATE_MP_CONFIG_PATH(path) {
+        reduxStore.dispatch({
+            type: 'UPDATE_MP_CONFIG_PATH',
+            value: path
+        })
+    }
 }
 
 module.exports = main

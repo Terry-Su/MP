@@ -8,8 +8,6 @@ const config = {
   // relativePathsToOutput: ['./static', 'toSyncFolder1'],
   // outputServer: {
   //   port: 3100,
-  //   shouldWatch: true,
-  //   shouldOpen: true,
   // },
   shouldWatchMpConfig: false,
   shouldWatchNodeConfig: false,
