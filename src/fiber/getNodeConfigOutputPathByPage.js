@@ -1,6 +1,12 @@
-const getNodeConfigSpecialByPage = require('./getNodeConfigSpecialByPage')
+const getNodeConfigByPage = require('./getNodeConfigByPage')
 
 
 module.exports = function (page) {
-    return getNodeConfigSpecialByPage(page, 'outputPath')
+    const nodeConfig = getNodeConfigByPage(page)
+
+    if (nodeConfig) {
+        return nodeConfig['outputPath']
+    }
+
+    return undefined
 }

@@ -1,4 +1,5 @@
 const getNodeConfigByPage = require('./getNodeConfigByPage')
+const getOutputPagePathByPage = require('./getOutputPagePathByPage')
 
 
 const isVarsMethod = vars => typeof vars === 'function'
@@ -12,7 +13,8 @@ module.exports = function (page, specialConfigName) {
         specialConfig = nodeConfig[specialConfigName]
 
         if (isVarsMethod(specialConfig)) {
-            specialConfig = specialConfig()
+            const outputPagePath = getOutputPagePathByPage(page)
+            specialConfig = specialConfig(outputPagePath, page)
         }
     }
 

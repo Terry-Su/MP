@@ -1,5 +1,5 @@
 module.exports = {
-    getHtml() {
+    getHtml(outputPagePath, page) {
         return {
             content: '123456'
         }
