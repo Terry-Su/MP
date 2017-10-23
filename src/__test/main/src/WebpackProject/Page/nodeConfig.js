@@ -1,6 +1,5 @@
 module.exports = {
-  webpack: {
+  getWebpack: {
 
   },
-  relativePathsToOutput: ['index.html']
 }

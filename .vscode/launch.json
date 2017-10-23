@@ -8,9 +8,11 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "cwd": "${workspaceFolder}/src/__test/main",
+      // "cwd": "${workspaceFolder}/src/__test/main",
+      "cwd": "${workspaceFolder}/src/__test/getWebpack",
       "program": "${workspaceFolder}/src/__test/main/index.js",
       // "program": "${workspaceFolder}/src/fiber/__test/serverOutput/index.js",
+      "program": "${workspaceFolder}/src/__test/getWebpack/index.js",
       "console": "externalTerminal",
     },
   ]

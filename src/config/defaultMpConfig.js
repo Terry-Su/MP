@@ -5,13 +5,17 @@ const PATH = require('path')
  * Mp config
  */
 const structure = {
-  webpack: {
+  getWebpack() {
+    return {
 
+    }
   },
-  html: {
-    name: '',
-    content: '',
-    relativePath: '',
+  getHtml() {
+    return {
+      name: '',
+      content: '',
+      relativePath: '',
+    }
   },
   srcPath: '',
   outputPath: '',
