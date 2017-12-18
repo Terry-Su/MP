@@ -11,9 +11,9 @@ const mpConfigPath = Selector.getMpConfigPath()
 const getRealtimeConfig = () => {
     const mpConfig = require(mpConfigPath)
     Util.cleanRequreCache(mpConfigPath)
-    
+
     const config = Object.assign({}, defaultMpConfig, mpConfig, {
-    
+
     })
     return config
 }
