@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"dev": "gulp",
+    "dev": "gulp",
     "test": "jasmine"
   },
   "keywords": [],
@@ -61,6 +61,9 @@
     "webpack-dev-server": "^2.9.2"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.8.2",
+    "@types/lodash": "^4.14.91",
+    "@types/node": "^8.5.1",
     "eslint": "^4.13.1",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.3",
