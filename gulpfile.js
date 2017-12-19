@@ -11,6 +11,8 @@ const srcOtherFilesGlobs = [
 ]
 const watchingSrcGlob = 'src/**/*'
 
+let watcher = undefined
+
 function deleteDist() {
 	return Promise.resolve( new Promise( ( resolve ) => {
 		rimraf( distPath, () => {
@@ -31,16 +33,24 @@ function asyncMainOther() {
 }
 
 function main() {
-	deleteDist().then( () => {
-		asyncMainOther()
-		asyncMainTs()
-	} )
+	try {
+		deleteDist().then( () => {
+			asyncMainOther()
+			asyncMainTs()
+		} )
+	} catch ( e ) {
+		watcher.close()
+		watcher = gulp.watch( watchingSrcGlob, main )
+		throw e
+	}
 
 }
+
+watcher = gulp.watch( watchingSrcGlob, main )
 
 gulp.task( "default", () => {
 	main()
 } )
 
-gulp.watch( watchingSrcGlob, main )
+
 

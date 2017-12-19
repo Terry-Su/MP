@@ -3,9 +3,10 @@
 		"src/**/*"
 	],
 	"exclude": [
-        "node_modules",
-    ],
+		"node_modules",
+	],
 	"compilerOptions": {
+		"baseUrl": "./src",
 		"noImplicitAny": true,
 		"target": "es5",
 		"allowJs": true,

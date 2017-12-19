@@ -1,8 +1,9 @@
 import existFile = require( './existFile' )
-import FS = require( 'fs' )
-import _ = require( 'lodash' )
+import * as FS from 'fs'
+import * as _ from 'lodash'
 
-export = function( path: string ) {
+
+export default function( path: string ) : boolean {
 	let result: boolean = false
 	if ( existFile( path ) ) {
 		const possibleJsonString = FS.readFileSync( path, { encoding: 'utf8' } )

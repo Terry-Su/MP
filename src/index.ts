@@ -1,5 +1,9 @@
-// ****** Main step - Get paths of pages to develop ******
+import getPathsOfPagesToDevelop from './core/getPathsOfPagesToDevelop'
 
+let pathsToDevelop: string[] =[]
+
+// ****** Main step - Get paths of pages to develop ******
+pathsToDevelop = getPathsOfPagesToDevelop()
 
 
 // ****** Main step - Run webpack ******
