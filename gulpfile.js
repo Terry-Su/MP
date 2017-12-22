@@ -3,6 +3,7 @@ const gulp = require( "gulp" )
 const ts = require( "gulp-typescript" )
 const tsProject = ts.createProject( "tsconfig.json" )
 const rimraf = require( "rimraf" )
+const sourcemaps = require( 'gulp-sourcemaps' )
 
 const distPathStr = 'dist'
 const distPath = PATH.resolve( __dirname, 'dist' )
@@ -23,8 +24,14 @@ function deleteDist() {
 
 function asyncMainTs() {
 	return tsProject.src()
-		.pipe( tsProject() )
-		.js.pipe( gulp.dest( distPathStr ) )
+		.pipe( sourcemaps.init() )
+		.pipe( tsProject() ).js
+		.pipe( sourcemaps.write( '.', {
+			sourceRoot: function( file ) {
+					return file.cwd + '/src'
+			}
+		} ) )
+		.pipe( gulp.dest( 'dist' ) )
 }
 
 function asyncMainOther() {
@@ -38,7 +45,7 @@ function main() {
 			asyncMainOther()
 			asyncMainTs()
 		} )
-	} catch ( e ) {
+	} catch (e) {
 		watcher.close()
 		watcher = gulp.watch( watchingSrcGlob, main )
 		throw e

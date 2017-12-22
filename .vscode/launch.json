@@ -1,19 +1,20 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      // "cwd": "${workspaceFolder}/src/__test/main",
-      "cwd": "${workspaceFolder}/src/__test/practice-react",
-      "program": "${workspaceFolder}/src/__test/main/index.js",
-      // "program": "${workspaceFolder}/src/fiber/__test/serverOutput/index.js",
-      "program": "${workspaceFolder}/src/__test/practice-react/index.js",
-      // "console": "externalTerminal",
-    },
-  ]
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch Program",
+			"cwd": "${workspaceRoot}",
+			"program": "${workspaceRoot}/src/core/selectProjectsToDevelop/__test__/index.spec.ts",
+			"outFiles": [
+				"${workspaceRoot}/dist/**/*.js"
+			],
+			"sourceMaps": true,
+			"console": "integratedTerminal"
+		}
+	]
 }

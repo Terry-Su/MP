@@ -3,12 +3,20 @@
 		"src/**/*"
 	],
 	"exclude": [
-		"node_modules",
+		"node_modules"
 	],
 	"compilerOptions": {
-		"baseUrl": "./src",
+		// "rootDir": "src",
+		// "baseUrl": "src",
+		// "paths": {
+		// 	"~util/*": [ "./util" ],
+		// 	"~store/*": [ "./store" ],
+		// 	"~shared/*": [ "./shared" ]
+		// },
 		"noImplicitAny": true,
 		"target": "es5",
 		"allowJs": true,
+		"outDir": "dist",
+		"sourceMap": true
 	}
 }

@@ -1,13 +1,13 @@
 import * as PATH from 'path'
 const dirTree = require( 'directory-tree' )
 
-import { NODE_CONFIG } from 'store/constant'
-import { isFile, isDirectory } from 'util/index'
-import { isFileNodeConfig, getDirectoryName } from 'shared/FileSystem'
+import { NODE_CONFIG } from '../../store/constant'
+import { isFile, isDirectory } from '../../util/index'
+import { isFileNodeConfig, getDirectoryName } from '../../shared/FileSystem'
 
 
 function getPathsOfAllNodeConfig( workspacePath: string ) {
-	let pathsOfAllNodeConfig: string[] = []
+	let pathsOfAllNodeConfig : string[] = []
 
 	function handleFolderPath( path: string ) {
 		getTree( path )
@@ -36,13 +36,14 @@ function getPathsOfAllNodeConfig( workspacePath: string ) {
 
 
 
-export default function ( defaultSelection: any, workspacePath: string = process.cwd() ) {
+export default function ( workspacePath: string = process.cwd(), defaultSelection: any ) {
 	// ****** get all `nodeConfig` paths ******
 	const pathsOfAllNodeConfig = getPathsOfAllNodeConfig( workspacePath )
 
 	// ****** get all paths contain `nodeConfig` ******
 	const pathsContainNodeConfig = pathsOfAllNodeConfig.map( getDirectoryName )
 
+	return pathsContainNodeConfig
 	// ****** interact by inquirer ******
 
 

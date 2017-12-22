@@ -1,6 +1,6 @@
 import * as PATH from 'path'
 
-import { NODE_CONFIG, NODE_CONFIG_EXTENSION } from 'store/constant'
+import { NODE_CONFIG, NODE_CONFIG_EXTENSION } from '../store/constant'
 
 
 export function isFileNodeConfig( path: string ) {

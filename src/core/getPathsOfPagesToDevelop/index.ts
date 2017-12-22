@@ -6,7 +6,7 @@ const existSelectionJson: boolean = existJsonFile( selectionJsonPath )
 
 export default function (): string[] {
 	if ( !existSelectionJson ) {
-		selectProjectsToDevelop( null )
+		selectProjectsToDevelop( '', null )
 	}
 
 	if (existSelectionJson ) {
