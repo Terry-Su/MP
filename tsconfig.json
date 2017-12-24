@@ -1,18 +1,11 @@
 {
 	"include": [
-		"src/**/*"
+		"src/**/*",
 	],
 	"exclude": [
 		"node_modules"
 	],
 	"compilerOptions": {
-		// "rootDir": "src",
-		// "baseUrl": "src",
-		// "paths": {
-		// 	"~util/*": [ "./util" ],
-		// 	"~store/*": [ "./store" ],
-		// 	"~shared/*": [ "./shared" ]
-		// },
 		"noImplicitAny": true,
 		"target": "es5",
 		"allowJs": true,
