@@ -1,6 +1,6 @@
 import FS = require( 'fs' )
 
-export  = function( path: string ) {
+export default function( path: string ) {
 	let result: boolean  = false
 
 	try {

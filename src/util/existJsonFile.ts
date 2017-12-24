@@ -1,4 +1,4 @@
-import existFile = require( './existFile' )
+import existFile from './existFile'
 import * as FS from 'fs'
 import * as _ from 'lodash'
 

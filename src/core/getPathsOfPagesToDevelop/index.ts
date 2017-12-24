@@ -1,10 +1,7 @@
-import existJsonFile from '../../util/existJsonFile'
-import { selectionJsonPath } from '../../store/initialState'
+import checkSelectionJson from './checkSelectionJson/index'
 
-const existSelectionJson: boolean = existJsonFile( selectionJsonPath )
 
 export default function (): string[] {
-
-
+	console.log( { checkSelectionJson: checkSelectionJson() } )
 	return []
 }

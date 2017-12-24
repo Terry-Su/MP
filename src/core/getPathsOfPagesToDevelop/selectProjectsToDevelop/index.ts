@@ -1,10 +1,10 @@
 import * as PATH from 'path'
 const dirTree = require( 'directory-tree' )
 
-import { NODE_CONFIG } from '../../store/constant'
-import { isFile, isDirectory } from '../../util/index'
-import { isFileNodeConfig, getDirectoryName } from '../../shared/FileSystem'
-import { getPathsOfAllNodeConfig } from '../../shared/index'
+import { NODE_CONFIG } from '../../../store/constant'
+import { isFile, isDirectory } from '../../../util/index'
+import { isFileNodeConfig, getDirectoryName } from '../../../shared/FileSystem'
+import { getPathsOfAllNodeConfig } from '../../../shared/index'
 
 const inquirer = require( 'inquirer' )
 

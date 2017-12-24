@@ -2,6 +2,6 @@ import getPathsOfPagesToDevelop from '../..'
 
 
 
-console.log( getPathsOfPagesToDevelop( false ) )
+console.log( getPathsOfPagesToDevelop() )
 
 
