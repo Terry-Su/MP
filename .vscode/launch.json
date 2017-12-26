@@ -10,25 +10,22 @@
 			"name": "Jasmine Individual Test",
 			"cwd": "${workspaceRoot}",
 			"program": "${workspaceFolder}/src/__spec/tsRunnerForVscodeDebugger.ts",
-			"args": [
-				"/Users/suxing/Documents/WorkingDocuments/Project/MP/src/core/selectProjectsToDevelop/__test__/index.spec.ts"
-			],
 			"outFiles": [
 				"${workspaceRoot}/dist/**/*.js"
 			],
 			"sourceMaps": true,
 		},
-		{
-			"type": "node",
-			"request": "launch",
-			"name": "Node test",
-			"cwd": "${workspaceRoot}",
-			// "program": "",
-			"program": "/Users/suxing/Documents/WorkingDocuments/Project/MP/src/shared/__test/getPathsOfAllNodeConfig/index.spec.ts",
-			"outFiles": [
-				"${workspaceRoot}/dist/**/*.js"
-			],
-			"sourceMaps": true,
-		},
+		// {
+		// 	"type": "node",
+		// 	"request": "launch",
+		// 	"name": "Node test",
+		// 	"cwd": "${workspaceRoot}",
+		// 	// "program": "",
+		// 	"program": "/Users/suxing/Documents/WorkingDocuments/Project/MP/src/shared/__test/getPathsOfAllNodeConfig/index.spec.ts",
+		// 	"outFiles": [
+		// 		"${workspaceRoot}/dist/**/*.js"
+		// 	],
+		// 	"sourceMaps": true,
+		// },
 	]
 }

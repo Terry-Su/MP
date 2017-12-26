@@ -8,7 +8,11 @@ const sourcemaps = require( 'gulp-sourcemaps' )
 const distPathStr = 'dist'
 const distPath = PATH.resolve( __dirname, 'dist' )
 const srcOtherFilesGlobs = [
-	'src/**/*.json',
+	// 'src/**/*.json',
+	// 'src/**/\.*/*.json',
+	'src/**/*',
+	'src/**/\.*/*',
+	'!src/**/*.ts'
 ]
 const watchingSrcGlob = 'src/**/*'
 
