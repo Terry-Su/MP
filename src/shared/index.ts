@@ -1,1 +1,1 @@
-export { default as getPathsOfAllNodeConfig } from './getPathsOfAllNodeConfig'
+export { default as getPathsContainNodeConfig } from './getPathsContainNodeConfig'

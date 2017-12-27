@@ -1,5 +1,5 @@
 import { existJsonFile } from '../../../util/index'
-import { getSelectionJsonPath } from '../../../store/initialState'
+import { getSelectionJsonPath } from '../../../store/index'
 
 
 export default function () {

@@ -10,11 +10,11 @@ function getTree( path: string ) {
 	return dirTree( path )
 }
 
-export default function getPathsOfAllNodeConfig( entryPath: string ) {
-	let pathsOfAllNodeConfig : string[] = []
+export default function ( entryPath: string ) {
+	let pathsContainNodeConfig : string[] = []
 
 	function handleFilePath( path: string ) {
-		isFileNodeConfig( path ) && pathsOfAllNodeConfig.push( path )
+		isFileNodeConfig( path ) && pathsContainNodeConfig.push( PATH.dirname( path ) )
 	}
 
 	function handleFolderPath( path: string ) {
@@ -31,5 +31,5 @@ export default function getPathsOfAllNodeConfig( entryPath: string ) {
 	isDirectory( entryPath ) && handleFolderPath( entryPath )
 	isFile( entryPath ) && handleFilePath( entryPath )
 
-	return pathsOfAllNodeConfig
+	return pathsContainNodeConfig
 }

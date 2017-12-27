@@ -50,14 +50,16 @@ function main() {
 			asyncMainTs()
 		} )
 	} catch (e) {
-		watcher.close()
-		watcher = gulp.watch( watchingSrcGlob, main )
-		throw e
+		watcher.remove()
+		watcher.end()
+		watcher = gulp.watch( watchingSrcGlob )
+		watcher.on( 'change', main )
 	}
 
 }
 
-watcher = gulp.watch( watchingSrcGlob, main )
+watcher = gulp.watch( watchingSrcGlob )
+watcher.on( 'change', main )
 
 gulp.task( "default", () => {
 	main()
