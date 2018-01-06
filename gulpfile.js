@@ -14,7 +14,11 @@ const srcOtherFilesGlobs = [
 	'src/**/\.*/*',
 	'!src/**/*.ts'
 ]
-const watchingSrcGlob = 'src/**/*'
+// const watchingSrcGlob = srcOtherFilesGlobs
+const watchingSrcGlob = [
+	'src/**/*',
+	'src/**/\.*/*',
+]
 
 let watcher = undefined
 

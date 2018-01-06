@@ -9,6 +9,6 @@ export const NODE_CONFIG = 'nodeconfig'
 export const NODE_CONFIG_EXTENSION = '.js'
 
 // ******  selection json's self alias  ******
-export const SELECTION_JSON_ALIAS_SELF = '/self'
+export const SELECTION_JSON_ALIAS_SELF = '/:self'
 // ******  selection json's root alias  ******
-export const SELECTION_JSON_ALIAS_ALL = '/all'
+export const SELECTION_JSON_ALIAS_ALL = '/:all'

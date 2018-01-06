@@ -4,14 +4,11 @@ const dirTree = require( 'directory-tree' )
 import { isFile, isDirectory } from '../util/index'
 import { isFileNodeConfig } from '../shared/FileSystem'
 
-
-
-function getTree( path: string ) {
-	return dirTree( path )
-}
-
 export default function ( entryPath: string ) {
 	let pathsContainNodeConfig : string[] = []
+
+	isDirectory( entryPath ) && handleFolderPath( entryPath )
+	isFile( entryPath ) && handleFilePath( entryPath )
 
 	function handleFilePath( path: string ) {
 		isFileNodeConfig( path ) && pathsContainNodeConfig.push( PATH.dirname( path ) )
@@ -28,8 +25,10 @@ export default function ( entryPath: string ) {
 		)
 	}
 
-	isDirectory( entryPath ) && handleFolderPath( entryPath )
-	isFile( entryPath ) && handleFilePath( entryPath )
+	function getTree( path: string ) {
+		return dirTree( path )
+	}
 
 	return pathsContainNodeConfig
 }
+

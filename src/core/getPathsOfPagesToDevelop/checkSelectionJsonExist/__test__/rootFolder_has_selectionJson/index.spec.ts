@@ -1,17 +1,23 @@
 import * as PATH from 'path'
-import checkSelectionJson from '../../index'
+import checkSelectionJsonExist from '../../index'
 import { changeProcessCwd, recoverProcessCwd } from '../../../../../util/test/index'
 
-// Cache process.cwd() for recover it
-const originProcessCwdPath = process.cwd()
 
+const root = __dirname
 
 describe(`CheckSelectionJson - exist selection json: `, function () {
 	it(`Test in rootFolder_has_selectionJson`, function () {
-		const root = __dirname
+		/**
+		 * Cache process.cwd() for recover it
+		 */
+		const originProcessCwdPath = process.cwd()
+
 		process.chdir( root )
-		const cachedResult = checkSelectionJson()
+
+		const cachedResult = checkSelectionJsonExist()
+
 		recoverProcessCwd( originProcessCwdPath )
+
 		expect( cachedResult ).toBe( true )
 	})
 })

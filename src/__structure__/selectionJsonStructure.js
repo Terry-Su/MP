@@ -1,7 +1,7 @@
 /**
  * unused, just to show stucture of selection.json
  */
-const selectionJsonStructure = [
+const SelectionJsonStructure = [
 	{
 		"firstRootFolder": {
 			"level1Folder1": {
