@@ -1,0 +1,22 @@
+[
+	{
+		"srcRoot1": {
+			"level1Folder1": {
+				"folderWithNodeConfig": true,
+				"level1Folder2": {
+					"folderWithNodeConfig": true
+				}
+			}
+		}
+	},
+	{
+		"srcRoot2": {
+			"level1Folder1": {
+				"folderWithNodeConfig": true,
+				"level1Folder2": {
+					"folderWithNodeConfig": true
+				}
+			}
+		}
+	}
+]

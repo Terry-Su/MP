@@ -27,7 +27,7 @@ describe(`CheckProjectsWithNodeConfigChange: `, function () {
 		expect( isChanged ).toEqual( true )
 	})
 
-	it(`Test unchanged root: `, function () {
+	it(`Test unchanging root: `, function () {
 		changeProcessCwd( rootUnchanging )
 
 		const paths = [

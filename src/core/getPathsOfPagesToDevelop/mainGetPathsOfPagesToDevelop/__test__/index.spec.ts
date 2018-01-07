@@ -1,7 +1,8 @@
 import * as PATH from 'path'
 
-import getCurrentSelectionJson from '../index'
+import mainGetPathsOfPagesToDevelop from '../index'
 import { changeProcessCwd, recoverProcessCwd } from '../../../../util/test/index'
+
 
 
 /**
@@ -11,20 +12,13 @@ const originProcessCwdPath = process.cwd()
 
 const root = PATH.resolve( __dirname, './root' )
 
-const originSelectionJson: any = [
-	{
-		"a": 123
-	}
-]
-
-describe(`GetCurrentSelectionJson: `, function () {
-	it(`Test: `, function () {
+describe(`mainGetPathsOfPagesToDevelop: `, function () {
+	it(`test: `, function () {
 		changeProcessCwd( root )
 
-		const currentSelectionJson = getCurrentSelectionJson()
+		const pages = mainGetPathsOfPagesToDevelop()
 
 		recoverProcessCwd( originProcessCwdPath )
-
-		expect( currentSelectionJson ).toEqual( originSelectionJson )
+		// expect().toBe()
 	})
 })

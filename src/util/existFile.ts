@@ -5,7 +5,9 @@ export default function( path: string ) {
 
 	try {
 		result = FS.lstatSync( path ).isFile()
-	} catch (e) {}
+	} catch (e) {
+		// console.log( e )
+	}
 
 	return result
 }

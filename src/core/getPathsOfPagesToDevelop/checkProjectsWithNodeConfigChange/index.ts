@@ -1,39 +1,43 @@
 import * as _ from 'lodash'
 
 import * as i from '../../../interface/index'
-import getCurrentSelectionJson from '../getCurrentSelectionJson/index'
-import getSelectionJsonContentByPaths from '../getSelectionJsonContentByPaths/index'
+import { getSelection } from '../../../store/index'
+import getSelectionJsonStringByPaths from '../getSelectionJsonStringByPaths/index'
 
 
 export default function ( paths: string[] ) {
-	const currentSelectionJson: i.SelectionJsonElement[] = getCurrentSelectionJson()
+	const selection: i.SelectionElement[] = getSelection()
 
-	const comparingSelectionJsonContent = getSelectionJsonContentByPaths( paths )
-	const comparingSelectionJson: i.SelectionJsonElement[] = getJson( comparingSelectionJsonContent )
+	const comparingSelectionContent = getSelectionJsonStringByPaths( paths )
+	const comparingSelection: i.SelectionElement[] = getJson( comparingSelectionContent )
 
 	if (
-		! _.isNil( currentSelectionJson ) &&
-		! _.isNil( comparingSelectionJson )
+		! _.isNil( selection ) &&
+		! _.isNil( comparingSelection )
 	) {
-		return ! compare( currentSelectionJson, comparingSelectionJson )
+		return ! compare( selection, comparingSelection )
 	}
 
 	return true
 
-	function getJson( jsonStr: string ): i.SelectionJsonElement[] {
+	function getJson( jsonStr: string ): i.SelectionElement[] {
 		try {
 			return JSON.parse( jsonStr )
 		} catch ( e ) {
-			return null
+			console.log( e )
 		}
+
+		return null
 	}
 
-	function compare( currentSelectionJson: i.SelectionJsonElement[], comparingSelectionJson: i.SelectionJsonElement[] ): boolean {
+	function compare( selection: i.SelectionElement[], comparingSelection: i.SelectionElement[] ): boolean {
 		try {
 			return (
-				compareJsonIgnoreStaticValue( currentSelectionJson, comparingSelectionJson )
+				compareJsonIgnoreStaticValue( selection, comparingSelection )
 			)
-		} catch ( e ) {}
+		} catch ( e ) {
+			console.log( e )
+		}
 
 		return false
 	}
@@ -57,7 +61,10 @@ export default function ( paths: string[] ) {
 						_.values( a ).filter( _.isPlainObject ).every( bHasValue )
 					 )
 				}
-			} catch ( e ) {}
+			} catch ( e ) {
+				console.log( e )
+			}
+
 			return false
 
 			function equalB( valueOfA: any, index: number ): boolean {

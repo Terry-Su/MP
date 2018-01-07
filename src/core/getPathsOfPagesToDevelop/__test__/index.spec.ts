@@ -13,6 +13,8 @@ const root = PATH.resolve( __dirname, './root' )
 const srcRoot1 = PATH.resolve( __dirname, './root/srcRoot1' )
 const srcRoot2 = PATH.resolve( __dirname, './root/srcRoot2' )
 
+const enableInteraction = false
+
 describe(`GetPathsOfPagesToDevelop`, function () {
 	it(`Test: `, function () {
 		const paths = [
@@ -22,9 +24,7 @@ describe(`GetPathsOfPagesToDevelop`, function () {
 
 		changeProcessCwd( root )
 
-		const pathsOfPagesToDevelop = getPathsOfPagesToDevelop( paths )
-
-		console.log( pathsOfPagesToDevelop )
+		// const pathsOfPagesToDevelop = getPathsOfPagesToDevelop( paths )
 
 		recoverProcessCwd( originProcessCwdPath )
 

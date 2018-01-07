@@ -2,31 +2,35 @@ import checkSelectionJsonExist from './checkSelectionJsonExist/index'
 import createSelectionJson from './createSelectionJson/index'
 import checkProjectsWithNodeConfigChange from './checkProjectsWithNodeConfigChange/index'
 import { promptProjectsSelectionChange, promptUpdateProjectKey } from '../../prompt/index'
-import { ChoicePromptUpdateProjectKey } from './../../store/promptEnum'
+import { ChoicePromptUpdateProjectKey } from './../../store/constant'
+import { setInnerMpConfigKey } from '../../store/index'
+import { MpConfigKey } from '../../store/constant'
 
-export default function ( paths: string[] = [] ): string[] {
+
+export default function ( paths: string[] = [] ): any {
 	const existSelectionJson: boolean = checkSelectionJsonExist()
 
 	if ( ! existSelectionJson ) {
 		createSelectionJson( paths )
-		promptUpdateProjectKeyAndRespondChoice()
+		return promptUpdateProjectKeyAndRespondChoice()
 	}
 
 	if ( existSelectionJson ) {
 		const isChanged = checkProjectsWithNodeConfigChange( paths )
 
 		if ( isChanged ) {
-			promptProjectsSelectionChange()
+			return promptProjectsSelectionChange()
 				.then(
 					( shouldResetAllSelection: boolean ) => {
 						// reset seletion json file
 						shouldResetAllSelection && createSelectionJson()
-						promptUpdateProjectKeyAndRespondChoice()
+
+						return promptUpdateProjectKeyAndRespondChoice()
 					}
 				)
 		}
 		if ( ! isChanged ) {
-			promptUpdateProjectKeyAndRespondChoice()
+			return promptUpdateProjectKeyAndRespondChoice()
 		}
 	}
 
@@ -35,10 +39,33 @@ export default function ( paths: string[] = [] ): string[] {
 		promptProjectsSelectionChange().then( resolveAnswer )
 
 		function resolveAnswer( answer: ChoicePromptUpdateProjectKey ) {
-			if ( answer === ChoicePromptUpdateProjectKey.Continue ) {
-
+			switch( answer ) {
+				case ChoicePromptUpdateProjectKey.Continue:
+					return chooseToContinue()
+				case ChoicePromptUpdateProjectKey.Reset:
+					return chooseToReset()
+				case ChoicePromptUpdateProjectKey.Hide:
+					return chooseToHide()
 			}
 		}
 	}
+
+	function chooseToContinue() {
+
+	}
+
+	function chooseToReset() {
+		// reset seletion json file
+		createSelectionJson()
+
+		console.log( `.mpconfig>selection.json was reset!\n` )
+
+		return promptUpdateProjectKeyAndRespondChoice()
+	}
+
+	function chooseToHide() {
+		setInnerMpConfigKey( MpConfigKey.HideDefaultPrompt, true )
+	}
+
 	return []
 }

@@ -1,4 +1,4 @@
-import getSelectionJsonContentByPaths from '../index'
+import getSelectionJsonStringByPaths from '../index'
 import * as PATH from 'path'
 
 
@@ -7,7 +7,7 @@ const srcRoot2Path = PATH.resolve( __dirname, './srcRoot2' )
 const srcRoot3Path = PATH.resolve( __dirname, './srcRoot3' )
 
 const selectionJson_result = [{
-	"dist/core/getPathsOfPagesToDevelop/getSelectionJsonContentByPaths/__test__/srcRoot1": {
+	"dist/core/getPathsOfPagesToDevelop/getSelectionJsonStringByPaths/__test__/srcRoot1": {
 		"level1Folder1": {
 			"folderWithNodeConfig": false,
 			"level1Folder2": {
@@ -16,7 +16,7 @@ const selectionJson_result = [{
 		}
 	}
 }, {
-	"dist/core/getPathsOfPagesToDevelop/getSelectionJsonContentByPaths/__test__/srcRoot2": {
+	"dist/core/getPathsOfPagesToDevelop/getSelectionJsonStringByPaths/__test__/srcRoot2": {
 		"level1Folder1": {
 			"folderWithNodeConfig": false,
 			"level1Folder2": {
@@ -31,7 +31,7 @@ const selectionJson_result_content = JSON.stringify( selectionJson_result )
 describe(`GetSelectionJsonContent: `, function () {
 
 	it(`test: `, function () {
-		const selectionJsonContent = getSelectionJsonContentByPaths( [
+		const selectionJsonContent = getSelectionJsonStringByPaths( [
 			srcRoot1Path,
 			srcRoot2Path,
 			srcRoot3Path

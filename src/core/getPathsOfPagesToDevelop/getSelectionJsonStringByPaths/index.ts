@@ -8,7 +8,7 @@ import * as i from '../../../interface/index'
 import { getRootPath } from '../../../store/index'
 
 export default function ( srcRootPaths: string[] = [] ): string {
-	let selectionJson: i.SelectionJsonElement[] = []
+	let selectionJson: i.SelectionElement[] = []
 
 	function pushElementToSelectionJson( srcRootPath: string ) {
 		let cachedData:any = {}
@@ -16,7 +16,7 @@ export default function ( srcRootPaths: string[] = [] ): string {
 
 		// src root path exists and has config file
 		if ( pathsContainNodeConfig.length > 0 ) {
-			const selectionJsonElement: i.SelectionJsonElement = getSelectionJsonElement( srcRootPath, pathsContainNodeConfig )
+			const selectionJsonElement: i.SelectionElement = getSelectionJsonElement( srcRootPath, pathsContainNodeConfig )
 			selectionJson.push( selectionJsonElement )
 		}
 	}
@@ -26,8 +26,8 @@ export default function ( srcRootPaths: string[] = [] ): string {
 	return JSON.stringify( selectionJson )
 }
 
-function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: string[] ): i.SelectionJsonElement {
-	let selectionJsonElement: i.SelectionJsonElement = {}
+function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: string[] ): i.SelectionElement {
+	let selectionJsonElement: i.SelectionElement = {}
 	/**
 	 * the newest json for set selectionJsonElement
 	 */

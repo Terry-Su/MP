@@ -1,6 +1,6 @@
 import * as inquirer from 'inquirer'
 
-import { ChoicePromptUpdateProjectKey } from '../store/promptEnum'
+import { ChoicePromptUpdateProjectKey } from '../store/constant'
 
 
 export default function (): any {
