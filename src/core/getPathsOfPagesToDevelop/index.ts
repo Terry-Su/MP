@@ -40,11 +40,11 @@ export default function ( paths: string[] = [] ): any {
 
 		function resolveAnswer( answer: ChoicePromptUpdateProjectKey ) {
 			switch( answer ) {
-				case ChoicePromptUpdateProjectKey.Continue:
+				case ChoicePromptUpdateProjectKey.CONTINUE:
 					return chooseToContinue()
-				case ChoicePromptUpdateProjectKey.Reset:
+				case ChoicePromptUpdateProjectKey.RESET:
 					return chooseToReset()
-				case ChoicePromptUpdateProjectKey.Hide:
+				case ChoicePromptUpdateProjectKey.HIDE:
 					return chooseToHide()
 			}
 		}
@@ -64,7 +64,7 @@ export default function ( paths: string[] = [] ): any {
 	}
 
 	function chooseToHide() {
-		setInnerMpConfigKey( MpConfigKey.HideDefaultPrompt, true )
+		setInnerMpConfigKey( MpConfigKey.HIDE_DEFAULT_PROMPT, true )
 	}
 
 	return []

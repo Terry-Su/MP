@@ -17,7 +17,7 @@ describe(`CreateSelectionJson: `, function () {
 		let isSelectionJsonCreated: boolean
 
 		/**
-		 * Cache process.cwd() for recover it
+		 * Cache process.cwd() and recover it later
 		 */
 		const originProcessCwdPath = process.cwd()
 

@@ -5,9 +5,9 @@ import { ChoicePromptUpdateProjectKey } from '../store/constant'
 
 export default function (): any {
 	const choices = [
-		ChoicePromptUpdateProjectKey.Continue,
-		ChoicePromptUpdateProjectKey.Reset,
-		ChoicePromptUpdateProjectKey.Hide,
+		ChoicePromptUpdateProjectKey.CONTINUE,
+		ChoicePromptUpdateProjectKey.RESET,
+		ChoicePromptUpdateProjectKey.HIDE,
 	]
 
 	return inquirer

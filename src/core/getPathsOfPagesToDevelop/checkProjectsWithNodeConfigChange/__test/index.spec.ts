@@ -5,7 +5,7 @@ import { changeProcessCwd, recoverProcessCwd } from '../../../../util/test/index
 
 
 /**
- * Cache process.cwd() for recover it
+ * Cache process.cwd() and recover it later
  */
 const originProcessCwdPath = process.cwd()
 

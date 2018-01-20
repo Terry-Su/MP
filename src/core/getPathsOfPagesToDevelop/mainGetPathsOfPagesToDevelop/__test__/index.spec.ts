@@ -6,7 +6,7 @@ import { changeProcessCwd, recoverProcessCwd } from '../../../../util/test/index
 
 
 /**
- * Cache process.cwd() for recover it
+ * Cache process.cwd() and recover it later
  */
 const originProcessCwdPath = process.cwd()
 
@@ -17,7 +17,6 @@ describe(`mainGetPathsOfPagesToDevelop: `, function () {
 		changeProcessCwd( root )
 
 		const pages = mainGetPathsOfPagesToDevelop()
-
 		recoverProcessCwd( originProcessCwdPath )
 		// expect().toBe()
 	})

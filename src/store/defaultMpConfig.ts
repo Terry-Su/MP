@@ -3,7 +3,7 @@ import { MpConfigKey } from '../store/constant'
 
 
 const defaultMpConfig: InnerMpConfig = {
-	[ MpConfigKey.HideDefaultPrompt ]: false
+	[ MpConfigKey.HIDE_DEFAULT_PROMPT ]: false
 }
 
 

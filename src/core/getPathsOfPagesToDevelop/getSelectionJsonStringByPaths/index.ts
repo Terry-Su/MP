@@ -6,6 +6,7 @@ import * as isParentDirectoryOf from '../../../lib/path-is-inside'
 
 import * as i from '../../../interface/index'
 import { getRootPath } from '../../../store/index'
+import { SelectionKey } from '../../../store/constant';
 
 export default function ( srcRootPaths: string[] = [] ): string {
 	let selectionJson: i.SelectionElement[] = []
@@ -29,9 +30,10 @@ export default function ( srcRootPaths: string[] = [] ): string {
 function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: string[] ): i.SelectionElement {
 	let selectionJsonElement: i.SelectionElement = {}
 	/**
-	 * the newest json for set selectionJsonElement
+	 * For setting selectionJsonElement
 	 */
 	let newestJson: any = selectionJsonElement
+
 	const paths = pathsContainNodeConfig
 
 	const firstField = PATH.relative( getRootPath(),  srcRootPath)
@@ -42,21 +44,52 @@ function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: s
 
 	function chain( path: string ) {
 		const folderNamesUnderSrcRootPath: string[] = getFolderNamesUnderSrcRootPath( path )
+
+		/**
+		 * Add SelectionKey.SELF
+		 */
+		if ( isRootPath( path ) ) {
+			const tmpJson:any = selectionJsonElement[ firstField ]
+			tmpJson[ SelectionKey.SELF ] = false
+		}
+
+		newestJson = selectionJsonElement[ firstField ]
+
 		folderNamesUnderSrcRootPath.map( chainFolderName )
+
+		function isRootPath( path: string ) {
+			return path === srcRootPath
+		}
 	}
 
 	function chainFolderName( folderName: string, index: number, arr: string[] ) {
 		const isLast: boolean = isLastElement( index, arr.length )
 		if ( ! isLast ) {
-			if ( ! _.isPlainObject( newestJson[ folderName ] ) ) {
+			if ( _.isNil( newestJson[ folderName ] ) ) {
 				newestJson[ folderName ] = {}
+			}
+			if ( _.isBoolean( newestJson[ folderName ] ) ) {
+				newestJson[ folderName ] = {}
+
+				/**
+				 * Add SelectionKey.SELF
+				 */
+				newestJson[ folderName ][ SelectionKey.SELF ] = false
 			}
 
 			newestJson = newestJson[ folderName ]
 		}
 
 		if ( isLast ) {
-			newestJson[ folderName ] = false
+			if ( _.isPlainObject( newestJson[ folderName ] ) ) {
+				/**
+				 * Add SelectionKey.SELF
+				 */
+				newestJson[ folderName ][ SelectionKey.SELF ] = false
+			}
+			if ( ! _.isPlainObject( newestJson[ folderName ] ) ) {
+				newestJson[ folderName ] = false
+			}
 		}
 	}
 

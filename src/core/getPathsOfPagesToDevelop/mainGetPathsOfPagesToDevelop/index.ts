@@ -10,6 +10,7 @@ export default function() {
 
 	!_.isNil( selection ) && selection.map( pushCompositePath )
 
+
 	function pushCompositePath( info: any ) {
 		const compositePaths = composePaths( info )
 
@@ -73,6 +74,28 @@ export default function() {
 		 * Recur plain object to get all valid path names( self is true )
 		 */
 		function composePathsByKeyWordSelf( info: any ): string[] {
+			let paths: string[] = []
+
+			recur( info )
+
+			function recur(
+				plainObject: i.SelectionElement,
+				pathNames: string[] = []
+			) {
+				_.mapValues( plainObject, resolveValue )
+
+				function resolveValue( value: any, key: string ) {
+					pathNames.push( key )
+
+					if ( value === true && notSelectionSpecialKey( key ) ) {
+						paths.push( getPathByPathNames( pathNames ) )
+					}
+
+					if ( _.isPlainObject( value ) ) {
+						recur( value, _.cloneDeep( pathNames ) )
+					}
+				}
+			}
 			return []
 		}
 

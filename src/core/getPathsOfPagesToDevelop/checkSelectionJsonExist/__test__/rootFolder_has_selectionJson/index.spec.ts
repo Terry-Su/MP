@@ -8,7 +8,7 @@ const root = __dirname
 describe(`CheckSelectionJson - exist selection json: `, function () {
 	it(`Test in rootFolder_has_selectionJson`, function () {
 		/**
-		 * Cache process.cwd() for recover it
+		 * Cache process.cwd() and recover it later
 		 */
 		const originProcessCwdPath = process.cwd()
 

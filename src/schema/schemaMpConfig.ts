@@ -6,7 +6,7 @@ import { MpConfigKey } from '../store/constant'
  */
 export default {
 	properties: {
-		[ MpConfigKey.HideDefaultPrompt ]: {
+		[ MpConfigKey.HIDE_DEFAULT_PROMPT ]: {
 			type: 'boolean'
 		}
 	}
