@@ -3,9 +3,10 @@ import createSelectionJson from './createSelectionJson/index'
 import checkProjectsWithNodeConfigChange from './checkProjectsWithNodeConfigChange/index'
 import { promptProjectsSelectionChange, promptUpdateProjectKey } from '../../prompt/index'
 import { ChoicePromptUpdateProjectKey } from './../../store/constant'
-import { setInnerMpConfigKey } from '../../store/index'
+import { setInnerMpConfigKey, getMpConfig } from '../../store/index'
 import { MpConfigKey } from '../../store/constant'
-
+import main from './main/index'
+import implementSyncMethodWithPromise from '../../util/implementSyncMethodWithPromise';
 
 export default function ( paths: string[] = [] ): any {
 	const existSelectionJson: boolean = checkSelectionJsonExist()
@@ -36,7 +37,11 @@ export default function ( paths: string[] = [] ): any {
 
 
 	function promptUpdateProjectKeyAndRespondChoice() {
-		promptProjectsSelectionChange().then( resolveAnswer )
+		if ( isHidingDefaultPrompt() ) {
+			return implementSyncMethodWithPromise( main )
+		}
+
+		return promptUpdateProjectKey().then( resolveAnswer )
 
 		function resolveAnswer( answer: ChoicePromptUpdateProjectKey ) {
 			switch( answer ) {
@@ -48,23 +53,31 @@ export default function ( paths: string[] = [] ): any {
 					return chooseToHide()
 			}
 		}
+
+		function isHidingDefaultPrompt(): boolean {
+			let res = false
+			const mpConfig: any = getMpConfig()
+			res = mpConfig[ MpConfigKey.HIDE_DEFAULT_PROMPT ]
+			return res
+		}
 	}
 
 	function chooseToContinue() {
-
+		return implementSyncMethodWithPromise( main )
 	}
 
 	function chooseToReset() {
 		// reset seletion json file
 		createSelectionJson()
 
-		console.log( `.mpconfig>selection.json was reset!\n` )
+		console.log( `.mpconfig>selection.json reset\n` )
 
 		return promptUpdateProjectKeyAndRespondChoice()
 	}
 
 	function chooseToHide() {
 		setInnerMpConfigKey( MpConfigKey.HIDE_DEFAULT_PROMPT, true )
+		return implementSyncMethodWithPromise( main )
 	}
 
 	return []

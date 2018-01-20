@@ -66,9 +66,11 @@
     "webpack-dev-server": "^2.9.2"
   },
   "devDependencies": {
+    "@types/es6-promise": "^3.3.0",
     "@types/jasmine": "^2.8.2",
     "@types/lodash": "^4.14.91",
     "@types/node": "^8.5.1",
+    "@types/rimraf": "^2.0.2",
     "eslint": "^4.13.1",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.3",

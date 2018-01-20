@@ -9,7 +9,7 @@ export default function( path: string ) : boolean {
 		const possibleJsonString = FS.readFileSync( path, { encoding: 'utf8' } )
 		try {
 			const possibleJson =  JSON.parse( possibleJsonString )
-			result = _.isPlainObject( possibleJson )
+			result = _.isPlainObject( possibleJson ) || _.isArray( possibleJson )
 		} catch(e) {
 			// console.log( e )
 		}

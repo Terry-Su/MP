@@ -12,15 +12,15 @@ export const NODE_CONFIG_EXTENSION = '.js'
 
 
 // ******  selection   ******
-export enum SelectionKey {
-	SELF = '/:self',
-	ALL = '/:all',
+export const SelectionKey = {
+	SELF: '/:self',
+	ALL: '/:all',
 }
 
 
 // ******  mp config  ******
 export const MP_CONFIG_JS = 'mp.config.js'
-export const Dot_MP_CONFIG_JSON = '.mp.config.json'
+export const Dot_MP_CONFIG_JSON = '.mpconfig.json'
 
 export enum MpConfigKey {
 	HIDE_DEFAULT_PROMPT = 'hideDefaultPrompt'

@@ -1,4 +1,6 @@
 export { default as isDirectory } from './isDirectory'
 export { default as isFile } from './isFile'
-export { default as existJsonFile } from './isFile'
-export { default as existFile } from './isFile'
+export { default as existJsonFile } from './existJsonFile'
+export { default as existFile } from './existFile'
+export { default as AIsParentDirectoryOfB } from './AIsParentDirectoryOfB'
+export { default as implementSyncMethodWithPromise } from './implementSyncMethodWithPromise'

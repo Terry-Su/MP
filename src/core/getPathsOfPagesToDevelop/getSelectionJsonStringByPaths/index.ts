@@ -2,7 +2,6 @@ import * as _ from 'lodash'
 import * as PATH from 'path'
 
 import { getPathsContainNodeConfig } from '../../../shared/index'
-import * as isParentDirectoryOf from '../../../lib/path-is-inside'
 
 import * as i from '../../../interface/index'
 import { getRootPath } from '../../../store/index'

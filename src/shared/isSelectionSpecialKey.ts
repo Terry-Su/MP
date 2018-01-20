@@ -4,5 +4,6 @@ import { SelectionKey } from '../store/constant'
 
 
 export default function ( key: string ): boolean {
-	return ! ( key in SelectionKey )
+	const res = _.includes( _.values( SelectionKey ), key )
+	return res
 }

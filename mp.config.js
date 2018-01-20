@@ -1,0 +1,2 @@
+
+	module.export = {"hideDefaultPrompt":false}

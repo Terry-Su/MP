@@ -1,0 +1,1 @@
+[{"dist/core/getPathsOfPagesToDevelop/__test__/root/srcRoot1":{"level1Folder1":{"folderWithNodeConfig":false},"level1Folder2":{"folderWithNodeConfig":false},"/:self":false}},{"dist/core/getPathsOfPagesToDevelop/__test__/root/srcRoot2":{"level1Folder1":{"folderWithNodeConfig":false},"level1Folder2":{"folderWithNodeConfig":false}}}]

@@ -8,10 +8,10 @@ export interface SelectionElement {
 /**
  * sync to store>schemaMpConfig
  */
-export interface InnerMpConfig extends OutsideMpConfig {
-	[ index: string ]: any,
+export interface InnerMpConfig {
+	// [ index: string ]: any,
 }
 
-export interface OutsideMpConfig {
+export interface OuterMpConfig {
 	'hideDefaultPrompt': boolean,
 }

@@ -2,7 +2,9 @@
 	"spec_dir": "dist",
 	"spec_files": [
 		"~/**/*[sS]pec.js",
-		"core/getPathsOfPagesToDevelop/createSelectionJson/__test__/index.spec.js"
+		"~/core/getPathsOfPagesToDevelop/createSelectionJson/__test__/index.spec.js",
+		"~/core/getPathsOfPagesToDevelop/main/__test__/index.spec.js",
+		"core/getPathsOfPagesToDevelop/__test__/index.spec.js"
 	],
 	"helpers": [],
 	"stopSpecOnExpectationFailure": false,
