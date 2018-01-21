@@ -20,7 +20,7 @@ export const SelectionKey = {
 
 // ******  mp config  ******
 export const MP_CONFIG_JS = 'mp.config.js'
-export const Dot_MP_CONFIG_JSON = '.mpconfig.json'
+export const DOT_MP_CONFIG_JSON = '.mpconfig.json'
 
 export enum MpConfigKey {
 	HIDE_DEFAULT_PROMPT = 'hideDefaultPrompt'

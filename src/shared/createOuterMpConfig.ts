@@ -3,6 +3,7 @@ import * as FS from 'fs-extra'
 import { getOuterMpConfigPath } from "../store/index";
 import { existFile } from "../util/index";
 import { OuterMpConfig } from '../interface/index';
+import { initialOuterMpConfig } from '../store/initialState';
 
 
 export default function () {
@@ -14,7 +15,7 @@ export default function () {
 }
 
 function getOuterMpConfigInitialString(): string {
-	const json = getOuterMpConfigInitialJson()
+	const json = initialOuterMpConfig
 	const res = `
 	module.export = ${
 		JSON.stringify( json )
@@ -23,8 +24,3 @@ function getOuterMpConfigInitialString(): string {
 	return res
 }
 
-function getOuterMpConfigInitialJson(): OuterMpConfig {
-	return {
-		hideDefaultPrompt: false
-	}
-}

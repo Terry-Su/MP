@@ -13,7 +13,7 @@ export default function (): any {
 			{
 				type: 'list',
 				name: 'prompt',
-				message: `Detect that the projects' selection had changed, would you want to reset all selection?`,
+				message: `Detect that projects' structure has changed, would you like to update selection json and continue?`,
 				choices
 			}
 		] )

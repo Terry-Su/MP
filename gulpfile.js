@@ -49,10 +49,10 @@ function asyncMainOther() {
 
 function main() {
 	try {
-		deleteDist().then( () => {
+		// deleteDist().then( () => {
 			asyncMainOther()
 			asyncMainTs()
-		} )
+		// } )
 	} catch (e) {
 		watcher.remove()
 		watcher.end()

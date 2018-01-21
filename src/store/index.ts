@@ -6,7 +6,7 @@ import {
 	DOT_MP_CONFIG,
 	SELECTION_JSON,
 	MP_CONFIG_JS,
-	Dot_MP_CONFIG_JSON,
+	DOT_MP_CONFIG_JSON,
 } from './constant'
 import * as i from '../interface/index'
 import { schemaMpConfig, schemaSelection } from '../schema/index'
@@ -14,6 +14,7 @@ import defaultMpConfig from './defaultMpConfig'
 import createInnerMpConfig from '../shared/createInnerMpConfig';
 import { existFile } from '../util/index';
 import createOuterMpConfig from '../shared/createOuterMpConfig';
+import { initialOuterMpConfig, initialInnerMpConfig } from './initialState';
 
 const ajv = new Ajv()
 
@@ -27,7 +28,7 @@ export function getSelectionJsonPath() {
 
 
 export function getInnerMpConfigPath() {
-	return PATH.resolve( getRootPath(), `${ DOT_MP_CONFIG }/${ Dot_MP_CONFIG_JSON }` )
+	return PATH.resolve( getRootPath(), `${ DOT_MP_CONFIG }/${ DOT_MP_CONFIG_JSON }` )
 }
 
 export function getOuterMpConfigPath() {
@@ -64,17 +65,11 @@ export function getSelection(): i.SelectionElement[] {
  */
 export function getMpConfig(): i.InnerMpConfig {
 	let config = { ...defaultMpConfig }
-	const innerMpConfigPath = getInnerMpConfigPath()
-	const outerMpConfigPath = getOuterMpConfigPath()
-
-	createInnerMpConfigIfNotExist( innerMpConfigPath )
-	createOuterMpConfigIfNotExist( outerMpConfigPath )
+	const innerMpConfig = getInnerMpConfig()
+	const outerMpConfig = getOuterMpConifig()
 
 	try {
 		let isFormatValid = false
-
-		const innerMpConfig = FS.readJSONSync( innerMpConfigPath )
-		const outerMpConfig = require( outerMpConfigPath )
 
 		config = {
 			...defaultMpConfig,
@@ -92,6 +87,35 @@ export function getMpConfig(): i.InnerMpConfig {
 		config =  { ...defaultMpConfig }
 	}
 	return config
+}
+export function getOuterMpConifig(): i.OuterMpConfig {
+	let outerMpConfig:i.OuterMpConfig = initialOuterMpConfig
+	const outerMpConfigPath = getOuterMpConfigPath()
+
+	createOuterMpConfigIfNotExist( outerMpConfigPath )
+
+	try {
+		outerMpConfig = require( outerMpConfigPath )
+	} catch( e ) {
+		console.log( e )
+	}
+
+	return outerMpConfig
+}
+
+export function getInnerMpConfig(): i.InnerMpConfig {
+	let innerMpConfig:i.InnerMpConfig = initialInnerMpConfig
+	const innerMpConfigPath = getInnerMpConfigPath()
+
+	createInnerMpConfigIfNotExist( innerMpConfigPath )
+
+	try {
+		innerMpConfig = FS.readJSONSync( innerMpConfigPath )
+	} catch( e ) {
+		console.log( e )
+	}
+
+	return innerMpConfig
 }
 export function setInnerMpConfigKey( key: string, value: any ) {
 	try {

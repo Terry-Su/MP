@@ -1,4 +1,4 @@
-import getPathsOfPagesToDevelop from './core/getPathsOfPagesToDevelop'
+import getPathsOfPagesToDevelop from './core/getPathsOfPagesToDevelop/index'
 
 let pathsToDevelop: string[] =[]
 

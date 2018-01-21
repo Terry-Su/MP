@@ -1,12 +1,13 @@
-import checkSelectionJsonExist from './checkSelectionJsonExist/index'
-import createSelectionJson from './createSelectionJson/index'
-import checkProjectsWithNodeConfigChange from './checkProjectsWithNodeConfigChange/index'
+import checkSelectionJsonExist from './checkSelectionJsonExist'
+import createSelectionJson from './createSelectionJson'
+import checkProjectsStructureChange from './checkProjectsStructureChange'
 import { promptProjectsSelectionChange, promptUpdateProjectKey } from '../../prompt/index'
 import { ChoicePromptUpdateProjectKey } from './../../store/constant'
 import { setInnerMpConfigKey, getMpConfig } from '../../store/index'
 import { MpConfigKey } from '../../store/constant'
-import main from './main/index'
+import main from './main'
 import implementSyncMethodWithPromise from '../../util/implementSyncMethodWithPromise';
+import updateSelectionJson from './updateSelectionJson';
 
 export default function ( paths: string[] = [] ): any {
 	const existSelectionJson: boolean = checkSelectionJsonExist()
@@ -17,14 +18,14 @@ export default function ( paths: string[] = [] ): any {
 	}
 
 	if ( existSelectionJson ) {
-		const isChanged = checkProjectsWithNodeConfigChange( paths )
+		const isChanged = checkProjectsStructureChange( paths )
 
 		if ( isChanged ) {
 			return promptProjectsSelectionChange()
 				.then(
-					( shouldResetAllSelection: boolean ) => {
+					( shouldUpdateSelectionJson: boolean ) => {
 						// reset seletion json file
-						shouldResetAllSelection && createSelectionJson()
+						shouldUpdateSelectionJson && updateSelectionJson( paths )
 
 						return promptUpdateProjectKeyAndRespondChoice()
 					}
@@ -68,7 +69,7 @@ export default function ( paths: string[] = [] ): any {
 
 	function chooseToReset() {
 		// reset seletion json file
-		createSelectionJson()
+		resetSelectionJson( paths )
 
 		console.log( `.mpconfig>selection.json reset\n` )
 
@@ -78,6 +79,10 @@ export default function ( paths: string[] = [] ): any {
 	function chooseToHide() {
 		setInnerMpConfigKey( MpConfigKey.HIDE_DEFAULT_PROMPT, true )
 		return implementSyncMethodWithPromise( main )
+	}
+
+	function resetSelectionJson( paths: string[] ) {
+		return createSelectionJson( paths )
 	}
 
 	return []

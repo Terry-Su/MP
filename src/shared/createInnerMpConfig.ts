@@ -3,6 +3,7 @@ import * as FS from 'fs-extra'
 import { getInnerMpConfigPath } from "../store/index";
 import { existFile } from "../util/index";
 import { InnerMpConfig } from '../interface/index';
+import { initialInnerMpConfig } from '../store/initialState';
 
 
 export default function () {
@@ -14,11 +15,9 @@ export default function () {
 }
 
 function getInnerMpConfigInitialString(): string {
-	const json = getInnerMpConfigInitialJson()
+	const json = initialInnerMpConfig
 	const res = JSON.stringify( json )
 	return res
 }
 
-function getInnerMpConfigInitialJson(): InnerMpConfig {
-	return {}
-}
+
