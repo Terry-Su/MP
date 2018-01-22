@@ -5,8 +5,8 @@ const SelectionJsonStructure = [
 	{
 		"firstRootFolder": {
 			"level1Folder1": {
-				'/self': false,
-				'/all': false,
+				'/self'        : false,
+				'/all'         : false,
 				"level2Folder1": false,
 				"level2Folder2": {
 					"level3Folder1": true

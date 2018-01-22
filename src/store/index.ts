@@ -1,42 +1,39 @@
-import * as PATH from 'path'
-import * as FS from 'fs-extra'
-import * as Ajv from '../lib/ajv'
+import * as PATH from "path"
+import * as FS from "fs-extra"
 
 import {
 	DOT_MP_CONFIG,
 	SELECTION_JSON,
 	MP_CONFIG_JS,
 	DOT_MP_CONFIG_JSON,
-} from './constant'
-import * as i from '../interface/index'
-import { schemaMpConfig, schemaSelection } from '../schema/index'
-import defaultMpConfig from './defaultMpConfig'
-import createInnerMpConfig from '../shared/createInnerMpConfig';
-import { existFile } from '../util/index';
-import createOuterMpConfig from '../shared/createOuterMpConfig';
-import { initialOuterMpConfig, initialInnerMpConfig } from './initialState';
-
-const ajv = new Ajv()
-
+	NODE_CONFIG_FULL_PATH_NAME
+} from "./constant"
+import * as i from "../interface/index"
+import { schemaMpConfig, schemaSelection } from "../schema/index"
+import createInnerMpConfig from "../shared/createInnerMpConfig"
+import { existFile } from "../util/index"
+import createOuterMpConfig from "../shared/createOuterMpConfig"
+import { defaultOuterMpConfig, defaultInnerMpConfig, defaultMpConfig } from "./initialState"
+import ajvValidate from "../util/ajvValidate";
+import getJsonByPath from "../util/getJsonByPath";
 
 export function getRootPath() {
 	return process.cwd()
 }
 export function getSelectionJsonPath() {
-	return PATH.resolve( getRootPath(), `${ DOT_MP_CONFIG }/${ SELECTION_JSON }` )
+	return PATH.resolve( getRootPath(), `${DOT_MP_CONFIG}/${SELECTION_JSON}` )
 }
 
-
 export function getInnerMpConfigPath() {
-	return PATH.resolve( getRootPath(), `${ DOT_MP_CONFIG }/${ DOT_MP_CONFIG_JSON }` )
+	return PATH.resolve( getRootPath(), `${DOT_MP_CONFIG}/${DOT_MP_CONFIG_JSON}` )
 }
 
 export function getOuterMpConfigPath() {
-	return PATH.resolve( getRootPath(), `${ MP_CONFIG_JS }` )
+	return PATH.resolve( getRootPath(), `${MP_CONFIG_JS}` )
 }
 
 /**
- * selection
+ * Selection
  */
 export function getSelection(): i.SelectionElement[] {
 	const selectionPath = getSelectionJsonPath()
@@ -47,7 +44,7 @@ export function getSelection(): i.SelectionElement[] {
 
 		selection = FS.readJsonSync( selectionPath )
 
-		isValid = ajv.validate( schemaSelection, selection )
+		isValid = ajvValidate( schemaSelection, selection )
 
 		if ( isValid ) {
 			return selection
@@ -59,9 +56,8 @@ export function getSelection(): i.SelectionElement[] {
 	return []
 }
 
-
 /**
- * mp config
+ * Mp config
  */
 export function getMpConfig(): i.InnerMpConfig {
 	let config = { ...defaultMpConfig }
@@ -74,29 +70,29 @@ export function getMpConfig(): i.InnerMpConfig {
 		config = {
 			...defaultMpConfig,
 			...innerMpConfig,
-			...outerMpConfig,
+			...outerMpConfig
 		}
 
-		isFormatValid = ajv.validate( schemaMpConfig )
+		isFormatValid = ajvValidate( schemaMpConfig, config )
 
 		if ( isFormatValid ) {
 			return config
 		}
 	} catch ( e ) {
 		console.log( e )
-		config =  { ...defaultMpConfig }
+		config = { ...defaultMpConfig }
 	}
 	return config
 }
 export function getOuterMpConifig(): i.OuterMpConfig {
-	let outerMpConfig:i.OuterMpConfig = initialOuterMpConfig
+	let outerMpConfig: i.OuterMpConfig = defaultOuterMpConfig
 	const outerMpConfigPath = getOuterMpConfigPath()
 
 	createOuterMpConfigIfNotExist( outerMpConfigPath )
 
 	try {
 		outerMpConfig = require( outerMpConfigPath )
-	} catch( e ) {
+	} catch ( e ) {
 		console.log( e )
 	}
 
@@ -104,14 +100,14 @@ export function getOuterMpConifig(): i.OuterMpConfig {
 }
 
 export function getInnerMpConfig(): i.InnerMpConfig {
-	let innerMpConfig:i.InnerMpConfig = initialInnerMpConfig
+	let innerMpConfig: i.InnerMpConfig = defaultInnerMpConfig
 	const innerMpConfigPath = getInnerMpConfigPath()
 
 	createInnerMpConfigIfNotExist( innerMpConfigPath )
 
 	try {
 		innerMpConfig = FS.readJSONSync( innerMpConfigPath )
-	} catch( e ) {
+	} catch ( e ) {
 		console.log( e )
 	}
 
@@ -126,20 +122,34 @@ export function setInnerMpConfigKey( key: string, value: any ) {
 		const innerMpConfig = FS.readJsonSync( innerMpConfigPath )
 		innerMpConfig[ key ] = value
 		FS.writeJSONSync( innerMpConfigPath, innerMpConfig )
-
-	} catch( e ) {
+	} catch ( e ) {
 		console.log( e )
 	}
 }
 
 function createInnerMpConfigIfNotExist( innerMpConfigPath: string ) {
-	if ( ! existFile( innerMpConfigPath ) ) {
+	if ( !existFile( innerMpConfigPath ) ) {
 		createInnerMpConfig()
 	}
 }
 
 function createOuterMpConfigIfNotExist( outerMpConfigPath: string ) {
-	if ( ! existFile( outerMpConfigPath ) ) {
+	if ( !existFile( outerMpConfigPath ) ) {
 		createOuterMpConfig()
 	}
+}
+
+
+/**
+ * Node config
+ */
+export function getNodeConfigByPath( path: string ): i.NodeConfig {
+	let res: i.NodeConfig
+	const nodeConfigPath = `${ path }/${ NODE_CONFIG_FULL_PATH_NAME }`
+	res = getJsonByPath( nodeConfigPath )
+	return res
+}
+export function getDefaultWebpackConfigPathByPagePath( path: string ): any {
+	const res = `${ path }/webpack.config.js`
+	return res
 }

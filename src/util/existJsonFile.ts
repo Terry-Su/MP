@@ -10,7 +10,7 @@ export default function( path: string ) : boolean {
 		try {
 			const possibleJson =  JSON.parse( possibleJsonString )
 			result = _.isPlainObject( possibleJson ) || _.isArray( possibleJson )
-		} catch(e) {
+		} catch( e ) {
 			// console.log( e )
 		}
 	}

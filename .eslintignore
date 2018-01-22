@@ -3,3 +3,9 @@
 
 # Build
 dist
+
+# Lib in src
+src/lib/**/*
+
+# Reference
+src/__structure__

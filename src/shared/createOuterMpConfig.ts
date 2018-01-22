@@ -1,9 +1,9 @@
 import * as FS from 'fs-extra'
 
-import { getOuterMpConfigPath } from "../store/index";
-import { existFile } from "../util/index";
-import { OuterMpConfig } from '../interface/index';
-import { initialOuterMpConfig } from '../store/initialState';
+import { getOuterMpConfigPath } from "../store/index"
+import { existFile } from "../util/index"
+import { OuterMpConfig } from '../interface/index'
+import { defaultOuterMpConfig } from '../store/initialState'
 
 
 export default function () {
@@ -15,7 +15,7 @@ export default function () {
 }
 
 function getOuterMpConfigInitialString(): string {
-	const json = initialOuterMpConfig
+	const json = defaultOuterMpConfig
 	const res = `
 	module.export = ${
 		JSON.stringify( json )

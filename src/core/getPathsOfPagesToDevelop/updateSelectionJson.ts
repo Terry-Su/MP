@@ -107,7 +107,5 @@ export default function (paths: string[] = []) {
 				}
 			}
 		}
-
-		return newSelection
 	}
 }

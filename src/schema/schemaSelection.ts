@@ -1,24 +1,22 @@
-import { SelectionKey } from '../store/constant'
-
+import { SelectionKey } from "../store/constant"
 
 /**
  * sync from schema>index>SelectionElement
  */
-// const selectionElementSchema: any =
 
-export default ({
-	type: 'array',
+export default {
+	type : "array",
 	items: {
-		type: 'object',
+		type             : "object",
 		patternProperties: {
-			'.*': {
-				type: [ 'boolean', 'object' ],
+			".*": {
+				type             : [ "boolean", "object" ],
 				patternProperties: {
-					'.*': {
-						'$ref': '#/items/patternProperties/.*'
+					".*": {
+						$ref: "#/items/patternProperties/.*"
 					}
 				}
 			}
-		},
+		}
 	}
-})
+}

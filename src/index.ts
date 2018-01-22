@@ -1,6 +1,6 @@
 import getPathsOfPagesToDevelop from './core/getPathsOfPagesToDevelop/index'
 
-let pathsToDevelop: string[] =[]
+let pathsToDevelop: string[] = []
 
 // ****** Main step - Get paths of pages to develop ******
 pathsToDevelop = getPathsOfPagesToDevelop()

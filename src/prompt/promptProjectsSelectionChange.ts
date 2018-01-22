@@ -1,9 +1,8 @@
-import * as inquirer from 'inquirer'
+import * as inquirer from "inquirer"
 
-
-export default function (): any {
+export default function(): any {
 	const enum Choice {
-		Yes = 'Yes',
+		Yes = "Yes",
 		No = "No"
 	}
 	const choices = [ Choice.Yes, Choice.No ]
@@ -11,23 +10,21 @@ export default function (): any {
 	return inquirer
 		.prompt( [
 			{
-				type: 'list',
-				name: 'prompt',
+				type   : "list",
+				name   : "prompt",
 				message: `Detect that projects' structure has changed, would you like to update selection json and continue?`,
 				choices
 			}
 		] )
-		.then(
-			( { prompt } ) => {
-				if ( prompt === Choice.Yes ) {
-					return true
-				}
+		.then( ( { prompt } ) => {
+			if ( prompt === Choice.Yes ) {
+				return true
+			}
 
-				if ( prompt === Choice.No ) {
-					return false
-				}
-
+			if ( prompt === Choice.No ) {
 				return false
 			}
-		)
+
+			return false
+		} )
 }

@@ -1,22 +1,25 @@
-import * as _ from 'lodash'
-import * as PATH from 'path'
+import * as _ from "lodash"
+import * as PATH from "path"
 
-import { getPathsContainNodeConfig } from '../../shared/index'
+import { getPathsContainNodeConfig } from "../../shared/index"
+import * as i from "../../interface/index"
+import { getRootPath } from "../../store/index"
+import { SelectionKey } from "../../store/constant"
 
-import * as i from '../../interface/index'
-import { getRootPath } from '../../store/index'
-import { SelectionKey } from '../../store/constant'
-
-export default function ( srcRootPaths: string[] = [] ): i.SelectionElement[] {
+export default function( srcRootPaths: string[] = [] ): i.SelectionElement[] {
 	let selectionJson: i.SelectionElement[] = []
 
 	function pushElementToSelectionJson( srcRootPath: string ) {
-		let cachedData:any = {}
-		const pathsContainNodeConfig: string[] = getPathsContainNodeConfig( srcRootPath )
+		const pathsContainNodeConfig: string[] = getPathsContainNodeConfig(
+			srcRootPath
+		)
 
 		// src root path exists and has config file
 		if ( pathsContainNodeConfig.length > 0 ) {
-			const selectionJsonElement: i.SelectionElement = getSelectionJsonElement( srcRootPath, pathsContainNodeConfig )
+			const selectionJsonElement: i.SelectionElement = getSelectionJsonElement(
+				srcRootPath,
+				pathsContainNodeConfig
+			)
 			selectionJson.push( selectionJsonElement )
 		}
 	}
@@ -26,7 +29,10 @@ export default function ( srcRootPaths: string[] = [] ): i.SelectionElement[] {
 	return selectionJson
 }
 
-function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: string[] ): i.SelectionElement {
+function getSelectionJsonElement(
+	srcRootPath: string,
+	pathsContainNodeConfig: string[]
+): i.SelectionElement {
 	let selectionJsonElement: i.SelectionElement = {}
 	/**
 	 * For setting selectionJsonElement
@@ -35,20 +41,22 @@ function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: s
 
 	const paths = pathsContainNodeConfig
 
-	const firstField = PATH.relative( getRootPath(),  srcRootPath)
+	const firstField = PATH.relative( getRootPath(), srcRootPath )
 	selectionJsonElement[ firstField ] = {}
 	newestJson = selectionJsonElement[ firstField ]
 
 	paths.map( chain )
 
 	function chain( path: string ) {
-		const folderNamesUnderSrcRootPath: string[] = getFolderNamesUnderSrcRootPath( path )
+		const folderNamesUnderSrcRootPath: string[] = getFolderNamesUnderSrcRootPath(
+			path
+		)
 
 		/**
 		 * Add SelectionKey.SELF
 		 */
 		if ( isRootPath( path ) ) {
-			const tmpJson:any = selectionJsonElement[ firstField ]
+			const tmpJson: any = selectionJsonElement[ firstField ]
 			tmpJson[ SelectionKey.SELF ] = false
 		}
 
@@ -63,7 +71,7 @@ function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: s
 
 	function chainFolderName( folderName: string, index: number, arr: string[] ) {
 		const isLast: boolean = isLastElement( index, arr.length )
-		if ( ! isLast ) {
+		if ( !isLast ) {
 			if ( _.isNil( newestJson[ folderName ] ) ) {
 				newestJson[ folderName ] = {}
 			}
@@ -86,23 +94,21 @@ function getSelectionJsonElement( srcRootPath: string, pathsContainNodeConfig: s
 				 */
 				newestJson[ folderName ][ SelectionKey.SELF ] = false
 			}
-			if ( ! _.isPlainObject( newestJson[ folderName ] ) ) {
+			if ( !_.isPlainObject( newestJson[ folderName ] ) ) {
 				newestJson[ folderName ] = false
 			}
 		}
 	}
 
 	function getFolderNamesUnderSrcRootPath( path: string ): string[] {
-		return (
-			path
-				.replace( new RegExp( `^${srcRootPath}` ), '' )
-				.split( '\/' )
-				.filter( isNotEmptyStr )
-		)
+		return path
+			.replace( new RegExp( `^${srcRootPath}` ), "" )
+			.split( "/" )
+			.filter( isNotEmptyStr )
 	}
 
 	function isNotEmptyStr( str: string ) {
-		return str !== ''
+		return str !== ""
 	}
 
 	function isLastElement( index: number, arrayLength: number ) {

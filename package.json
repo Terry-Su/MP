@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "test": "jasmine"
+    "test": "jasmine",
+    "eslint": "eslint src/**/*",
+    "eslintFix": "eslint src/**/* --fix"
   },
   "keywords": [],
   "author": "",
@@ -71,6 +73,7 @@
     "@types/lodash": "^4.14.91",
     "@types/node": "^8.5.1",
     "@types/rimraf": "^2.0.2",
+    "@types/webpack": "^3.8.3",
     "eslint": "^4.13.1",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.3",

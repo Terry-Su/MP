@@ -1,10 +1,10 @@
 export default function ( syncMethod: Function ): any {
-	return Promise.resolve(
-		new Promise(
-			resolve => {
-				const res = syncMethod()
-				resolve( res )
-			}
-		)
+	let promise: any = new Promise(
+		( resolve ) => {
+			const res = syncMethod()
+			resolve( res )
+		}
 	)
+
+	return promise.resolve()
 }
