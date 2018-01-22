@@ -51,7 +51,7 @@ describe( `GetPathsOfPagesToDevelop`, function() {
 
 		recoverProcessCwd( originProcessCwdPath )
 
-		// done()
+		done()
 	} )
 } )
 

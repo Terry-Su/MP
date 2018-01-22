@@ -1,18 +1,29 @@
-import { changeProcessCwd, recoverProcessCwd } from "../../../../util/test/index";
+import * as PATH from "path"
+import {
+	changeProcessCwd,
+	recoverProcessCwd
+} from "../../../../util/test/index"
+import runWebpack from "../../index"
 
-/**
- * Cache process.cwd() and recover it later
- */
-const originProcessCwdPath = process.cwd()
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 
-const root = PATH.resolve( __dirname, './root' )
+const pathWithWebpackConfig = PATH.resolve( __dirname, "withWebpackConfig" )
+const pathWithWebpackConfigPath = PATH.resolve(
+	__dirname,
+	"withWebpackConfigPath"
+)
+const pathDisableUseWebpack = PATH.resolve( __dirname, "disableUseWebpack" )
+const pathWithoutNodeConfig = PATH.resolve( __dirname, "withoutNodeConfig" )
 
+describe( `RunWebpack: `, function() {
+	beforeEach( done => {
+		runWebpack( [ pathWithWebpackConfig ] )
 
-describe(`RunWebpack: `, function () {
-	it(`test: `, function () {
-		changeProcessCwd(root)
+		setTimeout( () => { done() }, jasmine.DEFAULT_TIMEOUT_INTERVAL )
+	} )
 
-		recoverProcessCwd(originProcessCwdPath)
-		// expect( pages ).toEqual( expected )
-	})
-})
+	it( `test: `, function( done ) {
+		// expect(  ).toEqual(  )
+		done()
+	} )
+} )

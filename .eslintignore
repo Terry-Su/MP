@@ -9,3 +9,6 @@ src/lib/**/*
 
 # Reference
 src/__structure__
+
+# Template
+src/__template__

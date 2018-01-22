@@ -13,7 +13,7 @@ import { schemaMpConfig, schemaSelection } from "../schema/index"
 import createInnerMpConfig from "../shared/createInnerMpConfig"
 import { existFile } from "../util/index"
 import createOuterMpConfig from "../shared/createOuterMpConfig"
-import { defaultOuterMpConfig, defaultInnerMpConfig, defaultMpConfig } from "./initialState"
+import { defaultOuterMpConfig, defaultInnerMpConfig, defaultMpConfig, defaultNodeConfig } from "./initialState"
 import ajvValidate from "../util/ajvValidate";
 import getJsonByPath from "../util/getJsonByPath";
 
@@ -146,7 +146,11 @@ function createOuterMpConfigIfNotExist( outerMpConfigPath: string ) {
 export function getNodeConfigByPath( path: string ): i.NodeConfig {
 	let res: i.NodeConfig
 	const nodeConfigPath = `${ path }/${ NODE_CONFIG_FULL_PATH_NAME }`
-	res = getJsonByPath( nodeConfigPath )
+	const customNodeConfig = getJsonByPath( nodeConfigPath )
+	res = {
+		...defaultNodeConfig,
+		...customNodeConfig,
+	}
 	return res
 }
 export function getDefaultWebpackConfigPathByPagePath( path: string ): any {
