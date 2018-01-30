@@ -6,7 +6,6 @@ import {
 	recoverProcessCwd
 } from "../../../../util/test/index"
 import serverOutput from '../../index'
-import { NodeConfig } from '../../../../interface/index';
 import log from '../../../../util/log';
 
 const root = __dirname

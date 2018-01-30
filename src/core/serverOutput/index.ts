@@ -15,7 +15,7 @@ const rootPath = getRootPath()
 
 export default function () {
 	const mpConfig: any = getMpConfig()
-	const output = PATH.resolve( mpConfig[ OUTPUT ], rootPath )
+	const output = PATH.resolve( rootPath, `./${ mpConfig[ OUTPUT ] }` )
 	const config = {
 		server: {
 		  baseDir: output,

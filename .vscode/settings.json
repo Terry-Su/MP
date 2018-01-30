@@ -35,7 +35,7 @@
 	//   { "language": "typescript", "autoFix": true },
 	// ],
 
-	// "prettier.eslintIntegration": true,
+	"prettier.eslintIntegration": true,
 	// "window.zoomLevel": 0,
 
   }

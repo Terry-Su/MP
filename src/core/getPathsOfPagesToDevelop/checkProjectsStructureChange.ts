@@ -4,6 +4,7 @@ import * as i from '../../interface/index'
 import { getSelection } from '../../store/index'
 import getSelectionJsonStringByPaths from './getSelectionJsonStringByPaths'
 import { notSelectionSpecialKey } from '../../shared/index';
+import { isNil } from 'lodash';
 
 
 /**
@@ -54,6 +55,11 @@ export default function ( paths: string[] ) {
 		)
 
 		function compareJsonIgnoreStaticValueAtoB( a: any, b: any ) {
+
+			if ( isOneNilButOtherIsNot() ) {
+				return false
+			}
+
 			try {
 				if ( _.isArray( a ) ) {
 					return a.every( equalB )
@@ -85,6 +91,18 @@ export default function ( paths: string[] ) {
 				function equal( valueOfB: any ): boolean {
 					return compareJsonIgnoreStaticValueAtoB( valueOfB, valueOfA )
 				}
+			}
+
+			function isOneNilButOtherIsNot() {
+				const res = (
+					(
+						isNil( a ) && ! isNil( b )
+					) ||
+					(
+						! isNil( a ) && isNil( b )
+					)
+				)
+				return res
 			}
 		}
 	}

@@ -10,7 +10,7 @@ import { getMpConfig } from './store/index';
 const { SRC } = MpConfigKey
 
 
-export default function (): void {
+function mp(): void {
 	const mpConfig: any = getMpConfig()
 	let srcRoots = mpConfig[ SRC ]
 	srcRoots = srcRoots.map( toAbsolute )
@@ -40,3 +40,6 @@ export default function (): void {
 	}
 
 }
+
+export default mp
+module.exports = mp

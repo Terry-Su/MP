@@ -1,7 +1,7 @@
 import * as PATH from "path"
 import * as rimraf from "rimraf"
 
-import core from '../../index'
+import implement from '../../index'
 
 import {
 	changeProcessCwd,
@@ -23,7 +23,7 @@ describe( `Instance: `, function() {
 	beforeEach( done => {
 		changeProcessCwd( root )
 
-		core()
+		implement()
 
 		// done()
 	} )
