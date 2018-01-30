@@ -17,9 +17,11 @@ const pathWithoutNodeConfig = PATH.resolve( __dirname, "withoutNodeConfig" )
 
 describe( `RunWebpack: `, function() {
 	beforeEach( done => {
-		runWebpack( [ pathWithWebpackConfig ] )
+		runWebpack( [ pathWithWebpackConfigPath ] )
 
-		setTimeout( () => { done() }, jasmine.DEFAULT_TIMEOUT_INTERVAL )
+		setTimeout( () => {
+			done()
+		}, jasmine.DEFAULT_TIMEOUT_INTERVAL )
 	} )
 
 	it( `test: `, function( done ) {

@@ -9,7 +9,7 @@
 		"noImplicitAny": true,
 		"target": "es5",
 		"allowJs": true,
-		"outDir": "dist",
+		"outDir": "build",
 		"sourceMap": true,
 		"lib": [
 			"es5",

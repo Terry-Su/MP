@@ -11,7 +11,7 @@
 			"cwd": "${workspaceRoot}",
 			"program": "${workspaceFolder}/src/__spec/tsRunnerForVscodeDebugger.ts",
 			"outFiles": [
-				"${workspaceRoot}/dist/**/*.js"
+				"${workspaceRoot}/build/**/*.js"
 			],
 			"sourceMaps": true,
 			"console": "externalTerminal"

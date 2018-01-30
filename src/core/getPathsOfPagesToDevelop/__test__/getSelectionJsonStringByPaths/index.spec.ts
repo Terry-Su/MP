@@ -7,7 +7,7 @@ const srcRoot2Path = PATH.resolve( __dirname, './srcRoot2' )
 const srcRoot3Path = PATH.resolve( __dirname, './srcRoot3' )
 
 const selectionJson_result = [{
-	"dist/core/getPathsOfPagesToDevelop/getSelectionJsonStringByPaths/__test__/srcRoot1": {
+	"build/core/getPathsOfPagesToDevelop/getSelectionJsonStringByPaths/__test__/srcRoot1": {
 		"level1Folder1": {
 			"folderWithNodeConfig": false,
 			"level1Folder2": {
@@ -16,7 +16,7 @@ const selectionJson_result = [{
 		}
 	}
 }, {
-	"dist/core/getPathsOfPagesToDevelop/getSelectionJsonStringByPaths/__test__/srcRoot2": {
+	"build/core/getPathsOfPagesToDevelop/getSelectionJsonStringByPaths/__test__/srcRoot2": {
 		"level1Folder1": {
 			"folderWithNodeConfig": false,
 			"level1Folder2": {

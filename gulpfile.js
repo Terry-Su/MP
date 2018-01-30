@@ -5,8 +5,8 @@ const tsProject = ts.createProject( "tsconfig.json" )
 const rimraf = require( "rimraf" )
 const sourcemaps = require( 'gulp-sourcemaps' )
 
-const distPathStr = 'dist'
-const distPath = PATH.resolve( __dirname, 'dist' )
+const buildPathStr = 'build'
+const buildPath = PATH.resolve( __dirname, buildPathStr )
 const srcOtherFilesGlobs = [
 	// 'src/**/*.json',
 	// 'src/**/\.*/*.json',
@@ -22,9 +22,9 @@ const watchingSrcGlob = [
 
 let watcher = undefined
 
-function deleteDist() {
+function deleteBuild() {
 	return Promise.resolve( new Promise( ( resolve ) => {
-		rimraf( distPath, () => {
+		rimraf( buildPath, () => {
 			resolve()
 		} )
 	} ) )
@@ -39,17 +39,17 @@ function asyncMainTs() {
 					return file.cwd + '/src'
 			}
 		} ) )
-		.pipe( gulp.dest( 'dist' ) )
+		.pipe( gulp.dest( 'build' ) )
 }
 
 function asyncMainOther() {
 	return gulp.src( srcOtherFilesGlobs )
-		.pipe( gulp.dest( distPathStr ) )
+		.pipe( gulp.dest( buildPathStr ) )
 }
 
 function main() {
 	try {
-		// deleteDist().then( () => {
+		// deleteBuild().then( () => {
 			asyncMainOther()
 			asyncMainTs()
 		// } )
