@@ -16,7 +16,18 @@ export interface InnerMpConfig {
 	// [ index: string ]: any,
 }
 export interface OuterMpConfig {
-	'hideDefaultPrompt': boolean,
+	hideDefaultPrompt?: boolean,
+	src?: string[]
+	output?: string,
+	/**
+	 * Server port
+	 */
+	serverPort?: number,
+
+	/**
+	 * Whether open server automatically
+	 */
+	openServer?: boolean
 }
 
 
@@ -28,15 +39,15 @@ export interface NodeConfig {
 	/**
 	 * Run webpack or not for page
 	 */
-	useWebpack: boolean,
+	useWebpack?: boolean,
 
 	/**
 	 * Custom webpack config
 	 */
-	webpackConfig: any,
+	webpackConfig?: any,
 
 	/**
 	 * Custom webpack config's file path
 	 */
-	webpackConfigPath: string
+	webpackConfigPath?: string,
 }

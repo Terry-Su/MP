@@ -3,7 +3,7 @@ import * as PATH from "path"
 
 import { getPathsContainNodeConfig } from "../../shared/index"
 import * as i from "../../interface/index"
-import { getRootPath } from "../../store/index"
+import { getRootPath } from "../../store/shared/index"
 import { SelectionKey } from "../../store/constant"
 
 export default function( srcRootPaths: string[] = [] ): i.SelectionElement[] {

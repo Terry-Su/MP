@@ -16,10 +16,8 @@ import createOuterMpConfig from "../shared/createOuterMpConfig"
 import { defaultOuterMpConfig, defaultInnerMpConfig, defaultMpConfig, defaultNodeConfig } from "./initialState"
 import ajvValidate from "../util/ajvValidate";
 import getJsonByPath from "../util/getJsonByPath";
+import { getRootPath } from './shared/index';
 
-export function getRootPath() {
-	return process.cwd()
-}
 export function getSelectionJsonPath() {
 	return PATH.resolve( getRootPath(), `${DOT_MP_CONFIG}/${SELECTION_JSON}` )
 }
@@ -92,6 +90,10 @@ export function getOuterMpConifig(): i.OuterMpConfig {
 
 	try {
 		outerMpConfig = require( outerMpConfigPath )
+		outerMpConfig = {
+			...defaultOuterMpConfig,
+			...outerMpConfig
+		}
 	} catch ( e ) {
 		console.log( e )
 	}
@@ -107,6 +109,11 @@ export function getInnerMpConfig(): i.InnerMpConfig {
 
 	try {
 		innerMpConfig = FS.readJSONSync( innerMpConfigPath )
+
+		innerMpConfig = {
+			...defaultInnerMpConfig,
+			...innerMpConfig
+		}
 	} catch ( e ) {
 		console.log( e )
 	}

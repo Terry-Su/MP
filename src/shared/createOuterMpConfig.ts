@@ -17,7 +17,7 @@ export default function () {
 function getOuterMpConfigInitialString(): string {
 	const json = defaultOuterMpConfig
 	const res = `
-	module.export = ${
+	module.exports = ${
 		JSON.stringify( json )
 	}
 `

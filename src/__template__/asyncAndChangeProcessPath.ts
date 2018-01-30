@@ -6,6 +6,8 @@ import {
 	recoverProcessCwd
 } from "../util/test/index"
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
+
 
 const root = PATH.resolve( __dirname, "./root" )
 
@@ -14,12 +16,20 @@ const root = PATH.resolve( __dirname, "./root" )
  */
 const originProcessCwdPath = process.cwd()
 
-describe( `Instance`, function() {
-	changeProcessCwd( root )
+describe( `Instance: `, function() {
 
-	it( `Test: `, function(  ) {
+	beforeEach( done => {
+		changeProcessCwd( root )
+
+
 		recoverProcessCwd( originProcessCwdPath )
+		// done()
+	} )
+
+	it( `Test: `, function( done ) {
 
 		// expect().toBe()
+		done()
 	} )
 } )
+

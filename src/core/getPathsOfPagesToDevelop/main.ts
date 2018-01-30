@@ -2,7 +2,8 @@ import * as _ from "lodash"
 import * as PATH from 'path'
 
 import * as i from "../../interface/index"
-import { getSelection, getRootPath } from "../../store/index"
+import { getSelection } from "../../store/index"
+import { getRootPath } from '../../store/shared/index'
 import { isSelectionSpecialKey } from "../../shared/index"
 import { SelectionKey } from "../../store/constant";
 import { AIsParentDirectoryOfB, mapSortedValues } from "../../util/index";
@@ -54,6 +55,7 @@ export default function() {
 		)
 
 		return pathNames
+
 		/**
 		 * Recur plain object to get all valid path names( path is true )
 		 */

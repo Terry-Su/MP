@@ -1,4 +1,4 @@
-const mp = require('./src/controller/index.js')
+const mp = require('./build/index.js')
 
 
 // console.log( 123 )

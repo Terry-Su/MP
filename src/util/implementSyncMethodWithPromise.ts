@@ -6,5 +6,5 @@ export default function ( syncMethod: Function ): any {
 		}
 	)
 
-	return promise.resolve()
+	return Promise.resolve( promise )
 }

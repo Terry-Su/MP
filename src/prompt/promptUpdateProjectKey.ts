@@ -15,7 +15,7 @@ export default function (): any {
 			{
 				type   : 'list',
 				name   : 'prompt',
-				message: `You could set projects to develop by mutually update project key to true in .mpconfig>selection.json`,
+				message: `You could set projects to develop by mutually update project key to "true" in .mpconfig>selection.json`,
 				choices
 			}
 		] )
