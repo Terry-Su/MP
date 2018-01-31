@@ -11,8 +11,8 @@ export const NODE_CONFIG_EXTENSION = ".js"
 
 // ******  Selection   ******
 export const SelectionKey = {
-	SELF: "/:self",
-	ALL : "/:all"
+	SELF: "/self",
+	ALL : "/all"
 }
 
 // ******  Mp config  ******
