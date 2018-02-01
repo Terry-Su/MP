@@ -17,7 +17,7 @@ const pathWithoutNodeConfig = PATH.resolve( __dirname, "withoutNodeConfig" )
 
 describe( `RunWebpack: `, function() {
 	beforeEach( done => {
-		runWebpack( [ pathWithWebpackConfigPath ] )
+		runWebpack( [ pathWithWebpackConfig ] )
 
 		setTimeout( () => {
 			done()
