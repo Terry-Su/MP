@@ -42,5 +42,5 @@ export enum NodeConfigKey {
 export enum ChoicePromptUpdateProjectKey {
 	CONTINUE = "Already set, continue",
 	RESET = "Reset all selection",
-	HIDE = 'Do not show this anymore(Set "shouldPrompt" to "true" in mp.config.js to show this again) and continue'
+	HIDE = 'Do not show this anymore(Set "hideDefaultPrompt" to "true" in mp.config.js to show this again) and continue'
 }

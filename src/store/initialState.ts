@@ -12,7 +12,6 @@ const { USE_WEBPACK, WEBPACK_CONFIG, WEBPACK_CONFIG_PATH} = NodeConfigKey
  */
 export const defaultInnerMpConfig: InnerMpConfig = {}
 export const defaultOuterMpConfig: OuterMpConfig = {
-	[ HIDE_DEFAULT_PROMPT ]: false,
 	[ OUTPUT ]: `/${ OUTPUT_DIRECTORY }`,
 	[ SRC ]: [ '/' ],
 	[ SERVER_PORT ]: 3000,
